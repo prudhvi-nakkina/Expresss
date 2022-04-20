@@ -18,16 +18,45 @@ const ProfileImage = styled.img`
   width: 32px;
   height: 32px;
   border-radius: 50%;
-`
+`;
+
+const SearchContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  background: white;
+  border-radius: 16px;
+  width: 100%;
+  padding: 5px 10px;
+`;
+
+const SearchBox = styled.div`
+  background: #f6f6f6;
+  padding: 10px;
+`;
+
+const SearchIcon = styled.img`
+  width: 28px;
+  height: 28px;
+`;
+
+const SearchInput = styled.input`
+  width: 100%;
+`;
+
 
 const ContactListComponent = () => {
     return(
     <Container>
         <ProfileInfoDiv>
-            <ProfileImage>
-                
+            <ProfileImage src="/profile/elon.jpeg">
+
             </ProfileImage>
         </ProfileInfoDiv>
+        <SearchBox>
+            <SearchContainer>
+                <SearchIcon src={"/search-icon.svg"}></SearchIcon>
+            </SearchContainer>
+        </SearchBox>
         "ContactListComponent"
         </Container>
     );
