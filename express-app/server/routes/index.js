@@ -1,9 +1,10 @@
 
 import * as Controller from "../app/controllers";
+import * as Validation from "../utility/validations";
 const applyRoutes = (app) => {
   app.get("/", (req, res) => res.send(`API is running fine`));
   //create-user, login, channel, search-user, channel-list, send-messsage
-  app.post("/user", Controller.createUser);
+  app.post("/user", Validation.validateCreateUser, Controller.createUser);
 
   app.post("/login", Controller.loginUser);
   app.post("/channel", Controller.createChannel);
