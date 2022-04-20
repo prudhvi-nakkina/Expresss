@@ -31,6 +31,7 @@ const SearchContainer = styled.div`
 `;
 
 const SearchBox = styled.div`
+  display: flex;
   background: #f6f6f6;
   padding: 10px;
 `;
@@ -50,7 +51,6 @@ const SearchInput = styled.input`
 const ContactItem = styled.div`
   display: flex;
   flex-direction: row;
-  width: 100%;
   border-bottom: 1px solid #f2f2f2;
   background: white;
   cursor: pointer;
@@ -66,6 +66,7 @@ const ContactInfo = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
+  margin: 0 12px;
 `;
 
 const ContactName = styled.span`
@@ -74,14 +75,34 @@ const ContactName = styled.span`
   color: black;
 `;
 
+const MessageText = styled.span`
+  width: 100%;
+  font-size: 14px;
+  margin-top: 3px;
+  color: rgba(0, 0, 0, 0.8);
+`;
+
+const MessageTime = styled.span`
+  font-size: 12px;
+  margin-right: 10px;
+  color: rgba(0, 0, 0, 0.45);
+  white-space: nowrap;
+`;
+
 const ContactComponent = () =>{
   return <ContactItem>
       <ProfileIcon src="/profile/elon.jpeg"></ProfileIcon>
       <ContactInfo>
           <ContactName>
-              
+              Prudhvi Nakkina
           </ContactName>
+          <MessageText>
+              Hey!!!!!
+          </MessageText>
       </ContactInfo>
+      <MessageTime>
+          05:32 PM
+      </MessageTime>
     </ContactItem>;
 }
 
