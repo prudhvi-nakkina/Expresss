@@ -1,5 +1,5 @@
 const applyRoutes = (app) => {
-  app.get("/", (req, res) => res.send(`API os running fine`));
+  app.get("/", (req, res) => res.send(`API is running fine`));
   //create-user, login, channel, search-user, channel-list, send-messsage
   app.post("/user", (req, res) => res.send(`create-user`));
 
