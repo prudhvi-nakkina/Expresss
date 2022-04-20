@@ -1,0 +1,11 @@
+{
+  "name": "express-server",
+  "version": "1.0.0",
+  "description": "express-app microservices in node.js",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "fantastic4",
+  "license": "ISC"
+}
