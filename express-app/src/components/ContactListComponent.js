@@ -101,11 +101,11 @@ const ContactComponent = (props) =>{
               {userData.name}
           </ContactName>
           <MessageText>
-              Hey!!!!!
+              {userData.lastText}
           </MessageText>
       </ContactInfo>
       <MessageTime>
-          05:32 PM
+          {userData.lastTextTime}
       </MessageTime>
     </ContactItem>;
 }
