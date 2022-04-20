@@ -5,11 +5,11 @@ const applyRoutes = (app) => {
   //create-user, login, channel, search-user, channel-list, send-messsage
   app.post("/user", Controller.createUser);
 
-  app.post("/login", (req, res) => res.send(`login`));
-  app.post("/channel", (req, res) => res.send(`channel`));
-  app.get("/search-user", (req, res) => res.send(`search-user`));
-  app.get("/channel-list", (req, res) => res.send(`channel-list`));
-  app.post("/message", (req, res) => res.send(`message`));
+  app.post("/login", Controller.loginUser);
+  app.post("/channel", Controller.createChannel);
+  app.get("/search-user", Controller.searchUser);
+  app.get("/channel-list", Controller.getChannelList);
+  app.post("/message", Controller.sendMessage);
 };
 
 export default applyRoutes;
