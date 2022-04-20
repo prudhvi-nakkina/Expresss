@@ -31,6 +31,14 @@ validateCreateChannel: async (req, res, next) => {
     await validate(schema, req.body, res, next);
   },
 
+  validateGetChannelList: async (req, res, next) => {
+    const schema = yup.object().shape({
+      email: yup.string().required(),
+    });
+    await validate(schema, req.query, res, next);
+  },
+
+
 
 };
 
