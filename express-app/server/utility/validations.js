@@ -56,6 +56,16 @@ validateCreateChannel: async (req, res, next) => {
     });
     await validate(schema, req.body, res, next);
   },
+
+  /// added validate login check for extra 
+
+   validateLogin: async(req,res,next)=> {
+       const schema = yup.object().shape({
+           phoneNumber: yup.number().required(),
+           password: yup.string().required(),
+       });
+       await validate(schema,req.body,res,next);
+   },
 };
 
 
