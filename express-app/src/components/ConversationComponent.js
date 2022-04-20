@@ -1,6 +1,8 @@
 import styled from "styled-components";
 import { SearchContainer, SearchInput } from "./ContactListComponent";
 import { messagesList } from "../mockData";
+import Picker from "emoji-picker-react";
+import React, { useState } from "react";
 
 const Container = styled.div`
 display: flex;
@@ -65,6 +67,11 @@ const Message = styled.div`
 
 const ConversationComponent = (props) => {
     const {selectedChat} = props;
+    const [text, setText] = useState("");
+    const [pickerVisible, togglePicker] = useState(false);
+    const onEmojiClick = (event, emojiObj) => {
+        setText(text + emojiObj.emoji)
+    };
     return(
     <Container>
         <Profileheader>
@@ -82,9 +89,9 @@ const ConversationComponent = (props) => {
         </MessageContainer>
         <ChatBox>
             <SearchContainer>
-                <EmojiImage src={"/data.svg"}></EmojiImage>
-                <SearchInput placeholder="Type a Message">
-
+                {pickerVisible && (<Picker pickerStyle={{position: "absolute", bottom: "60px"}} onEmojiClick={onEmojiClick} />)}
+                <EmojiImage src={"/data.svg"} onClick={() => togglePicker(!pickerVisible)}></EmojiImage>
+                <SearchInput placeholder="Type a Message" value = {text} onChange={(e) => setText(e.target.value)}>
                 </SearchInput>
             </SearchContainer>
         </ChatBox>
