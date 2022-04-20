@@ -21,7 +21,9 @@ validateCreateChannel: async (req, res, next) => {
         .array()
         .of(
           yup.object().shape({
-            email: yup.string().required(),
+              //phone or email
+              //phone or -id
+            _id: yup.string().required(),
             name: yup.string().required(),
             profilePic: yup.string(),
           }),
@@ -33,14 +35,16 @@ validateCreateChannel: async (req, res, next) => {
 
   validateGetChannelList: async (req, res, next) => {
     const schema = yup.object().shape({
-      email: yup.string().required(),
+        //userId or email
+      userId: yup.string().required(),
     });
     await validate(schema, req.query, res, next);
   },
 
   validateSearchUser: async (req, res, next) => {
     const schema = yup.object().shape({
-      email: yup.string().required(),
+        //email or phone or phoneNumber
+      phone: yup.string().required(),
     });
     await validate(schema, req.query, res, next);
   },
@@ -50,8 +54,10 @@ validateCreateChannel: async (req, res, next) => {
     const schema = yup.object().shape({
       channelId: yup.string().required(),
       messages: yup.object().shape({
-        senderEmail: yup.string().required(),
-        text: yup.string().required(),
+          //sender id  or sender-email
+        senderId: yup.string().required(),
+        //text or message
+        message: yup.string().required(),
       }),
     });
     await validate(schema, req.body, res, next);
