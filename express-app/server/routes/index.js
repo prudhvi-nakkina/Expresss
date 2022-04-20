@@ -1,7 +1,9 @@
+
+import * as Controller from "../app/controllers";
 const applyRoutes = (app) => {
   app.get("/", (req, res) => res.send(`API is running fine`));
   //create-user, login, channel, search-user, channel-list, send-messsage
-  app.post("/user", (req, res) => res.send(`create-user`));
+  app.post("/user", Controller.createUser);
 
   app.post("/login", (req, res) => res.send(`login`));
   app.post("/channel", (req, res) => res.send(`channel`));
