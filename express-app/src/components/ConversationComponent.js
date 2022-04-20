@@ -58,6 +58,7 @@ const Message = styled.div`
   color: #303030;
   padding: 8px 10px;
   font-size: 14px;
+  border-radius: 4px;
   background: ${props => (props.isYours ? "#daf8cb" : "white")};
 `;
 
