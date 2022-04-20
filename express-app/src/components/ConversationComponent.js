@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { SearchContainer, SearchInput } from "./ContactListComponent";
+import { messagesList } from "../mockData";
 
 const Container = styled.div`
 display: flex;
@@ -71,16 +72,13 @@ const ConversationComponent = () => {
         Prudhvi Nakkina
         </Profileheader>
         <MessageContainer>
-            <MessageDiv isYours={true}>
-                <Message isYours={true}>
-                    Sup bro!
+            {messagesList.map((messageData) => (
+                <MessageDiv isYours={messageData.senderID === 0}>
+                <Message isYours={messageData.senderID === 0}>
+                    {messageData.text}
                 </Message>
             </MessageDiv>
-            <MessageDiv isYours={false}>
-                <Message isYours={false}>
-                    fuck off bro!
-                </Message>
-            </MessageDiv>
+            ))}
         </MessageContainer>
         <ChatBox>
             <SearchContainer>
