@@ -15,6 +15,21 @@ validateCreateUser: async(req,res,next) => {
       await validate(schema, req.body, res, next);
 
 },
+validateCreateChannel: async (req, res, next) => {
+    const schema = yup.object().shape({
+      channelUsers: yup
+        .array()
+        .of(
+          yup.object().shape({
+            email: yup.string().required(),
+            name: yup.string().required(),
+            profilePic: yup.string(),
+          }),
+        ).length(2)
+        .required(),
+    });
+    await validate(schema, req.body, res, next);
+  },
 
 
 };
