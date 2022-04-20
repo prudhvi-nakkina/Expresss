@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { contactList } from "../mockData";
 
 const Container = styled.div`
   display: flex;
@@ -90,12 +91,14 @@ const MessageTime = styled.span`
   white-space: nowrap;
 `;
 
-const ContactComponent = () =>{
+const ContactComponent = (props) =>{
+
+  const { userData } = props;
   return <ContactItem>
-      <ProfileIcon src="/profile/elon.jpeg"></ProfileIcon>
+      <ProfileIcon src={userData.profilePic}></ProfileIcon>
       <ContactInfo>
           <ContactName>
-              Prudhvi Nakkina
+              {userData.name}
           </ContactName>
           <MessageText>
               Hey!!!!!
@@ -122,9 +125,9 @@ const ContactListComponent = () => {
                 </SearchInput>
             </SearchContainer>
         </SearchBox>
-        <ContactComponent>
-
-        </ContactComponent>
+        {contactList.map((userData) => (
+            <ContactComponent userData = {userData} />
+        ))}
     </Container>
     );
 };
