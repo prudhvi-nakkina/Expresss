@@ -43,7 +43,23 @@ const MessageContainer = styled.div`
   display: flex;
   flex-direction: column;
   height: 100%;
-`
+  background: #e5ddd6;
+  overflow-y: auto;
+`;
+
+const MessageDiv = styled.div`
+  justify-content: ${props => (props.isYours ? "flex-end" : "flex-start")};
+  display: flex;
+  margin: 5px 15px;
+`;
+
+const Message = styled.div`
+  max-width: 50%;
+  color: #303030;
+  padding: 8px 10px;
+  font-size: 14px;
+  background: ${props => (props.isYours ? "#daf8cb" : "white")};
+`;
 
 const ConversationComponent = () => {
     return(
@@ -54,7 +70,16 @@ const ConversationComponent = () => {
         Prudhvi Nakkina
         </Profileheader>
         <MessageContainer>
-
+            <MessageDiv isYours={true}>
+                <Message isYours={true}>
+                    Sup bro!
+                </Message>
+            </MessageDiv>
+            <MessageDiv isYours={false}>
+                <Message isYours={false}>
+                    fuck off bro!
+                </Message>
+            </MessageDiv>
         </MessageContainer>
         <ChatBox>
             <SearchContainer>
