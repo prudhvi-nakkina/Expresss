@@ -46,9 +46,18 @@ validateCreateChannel: async (req, res, next) => {
   },
 
 
-
-
+  validateAddMessage: async (req, res, next) => {
+    const schema = yup.object().shape({
+      channelId: yup.string().required(),
+      messages: yup.object().shape({
+        senderEmail: yup.string().required(),
+        text: yup.string().required(),
+      }),
+    });
+    await validate(schema, req.body, res, next);
+  },
 };
+
 
 const validate = async (schema, reqData, res, next) => {
     try {
