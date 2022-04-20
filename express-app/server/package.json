@@ -4,6 +4,7 @@
   "description": "express-app microservices in node.js",
   "main": "server.js",
   "scripts": {
+    "start":"./node_modules/babel-cli/bin/babel-node.js --presets node8 ./server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "fantastic4",
