@@ -57,6 +57,9 @@ const ContactItem = styled.div`
   background: white;
   cursor: pointer;
   padding: 15px 12px;
+  :hover {
+      background: #ebebeb;
+  }
 `;
 
 const ProfileIcon = styled(ProfileImage)`
@@ -93,8 +96,8 @@ const MessageTime = styled.span`
 
 const ContactComponent = (props) =>{
 
-  const { userData } = props;
-  return <ContactItem>
+  const { userData, setChat } = props;
+  return <ContactItem onClick={() => setChat(userData)}>
       <ProfileIcon src={userData.profilePic}></ProfileIcon>
       <ContactInfo>
           <ContactName>
@@ -111,7 +114,7 @@ const ContactComponent = (props) =>{
 }
 
 
-const ContactListComponent = () => {
+const ContactListComponent = (props) => {
     return(
     <Container>
         <ProfileInfoDiv>
@@ -126,7 +129,7 @@ const ContactListComponent = () => {
             </SearchContainer>
         </SearchBox>
         {contactList.map((userData) => (
-            <ContactComponent userData = {userData} />
+            <ContactComponent userData = {userData} setChat={props.setChat} />
         ))}
     </Container>
     );

@@ -19,20 +19,34 @@ const Placeholder = styled.div`
   align-items: center;
   font-size: 14px;
   color: rgba(0, 0, 0, 0.45);
+  gap: 10px;
+  span {
+    font-size: 32px;
+    color: #525252;
+  }
 `;
 
-
-
+const ChatPlaceholder = styled.img`
+  width: 240px;
+  height: 240px;
+  border-radius: 50%;
+  object-fit: contain;
+`;
 
 function App() {
   const [selectedChat, setChat] = useState()
   return (
     <Container>
-      <ContactListComponent>
-
-      </ContactListComponent>
-
-      {selectedChat?<ConversationComponent />:<Placeholder></Placeholder>}
+      <ContactListComponent setChat={setChat}/>
+      {selectedChat?(
+        <ConversationComponent />
+      ) : (
+      <Placeholder>
+        <ChatPlaceholder src="/welcome-placeholder.jpeg"/>
+        <span>Keep Your Phone Connected</span>
+        Express connects to your phone to sync messages.
+      </Placeholder>
+      )}
     </Container>
   );
 }
