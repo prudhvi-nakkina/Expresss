@@ -4,6 +4,7 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   height: 100%;
+  width: 100%;
   flex: 1.6;
 `;
 
@@ -46,13 +47,50 @@ const SearchInput = styled.input`
   font-size: 15px;
 `;
 
+const ContactItem = styled.div`
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  border-bottom: 1px solid #f2f2f2;
+  background: white;
+  cursor: pointer;
+  padding: 15px 12px;
+`;
+
+const ProfileIcon = styled(ProfileImage)`
+  width: 38px;
+  height: 38px;
+`;
+
+const ContactInfo = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+`;
+
+const ContactName = styled.span`
+  width: 100;
+  font-size: 16px;
+  color: black;
+`;
+
+const ContactComponent = () =>{
+  return <ContactItem>
+      <ProfileIcon src="/profile/elon.jpeg"></ProfileIcon>
+      <ContactInfo>
+          <ContactName>
+              
+          </ContactName>
+      </ContactInfo>
+    </ContactItem>;
+}
+
 
 const ContactListComponent = () => {
     return(
     <Container>
         <ProfileInfoDiv>
             <ProfileImage src="/profile/elon.jpeg">
-
             </ProfileImage>
         </ProfileInfoDiv>
         <SearchBox>
@@ -62,7 +100,10 @@ const ContactListComponent = () => {
                 </SearchInput>
             </SearchContainer>
         </SearchBox>
-        </Container>
+        <ContactComponent>
+
+        </ContactComponent>
+    </Container>
     );
 };
 
