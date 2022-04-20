@@ -16,4 +16,21 @@ validateCreateUser: async(req,res,next) => {
 },
 
 
-}
+};
+
+const validate = async (schema, reqData, res, next) => {
+    try {
+      await schema.validate(reqData, { abortEarly: false });
+      next();
+    } catch (e) {
+      const errors = e.inner.map(({ path, message, value }) => ({
+        path,
+        message,
+        value,
+      }));
+      sendError(res, errors, "Invalid Request");
+    }
+  };
+  
+
+
