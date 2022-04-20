@@ -1,6 +1,6 @@
-import app from "express";
+import APP from "express";
 import connectDB from "./dbConnection";
-const connectDB = () => {};
+
 const app = new APP();
 const PORT = 3001;
 const startServer = () => {
