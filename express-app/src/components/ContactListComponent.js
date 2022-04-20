@@ -41,6 +41,9 @@ const SearchIcon = styled.img`
 
 const SearchInput = styled.input`
   width: 100%;
+  outline: none;
+  border: none;
+  font-size: 15px;
 `;
 
 
@@ -55,9 +58,10 @@ const ContactListComponent = () => {
         <SearchBox>
             <SearchContainer>
                 <SearchIcon src={"/search-icon.svg"}></SearchIcon>
+                <SearchInput placeholder="Search or start new chat">
+                </SearchInput>
             </SearchContainer>
         </SearchBox>
-        "ContactListComponent"
         </Container>
     );
 };
