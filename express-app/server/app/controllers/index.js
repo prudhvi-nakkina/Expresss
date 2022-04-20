@@ -10,7 +10,15 @@ module.exports = {
         sendResponse(res,userObj, "user added successful", true ,200);
     },
 
-    loginUser: async(req,res)=>{
+    loginUser: async (req,res)=>{
+      const requestData = req.body;
+      const isUserExist = await UserModel.findOneData({
+          phoneNumber: requestData.phoneNumber,
+          password: requestData.password,
+      });
+      if (!isUserExist)
+      return sendError(res,{},"Invalid Credentials");
+      sendResponse(res, isUserExist, "User logged in Successfully", true, 200);
 
     },
     createChannel: async(req,res)=>{
