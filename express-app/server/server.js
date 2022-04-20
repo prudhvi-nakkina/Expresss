@@ -1,4 +1,5 @@
 import app from "express";
+import connectDB from "./dbConnection";
 const connectDB = () => {};
 const app = new APP();
 const PORT = 3001;
