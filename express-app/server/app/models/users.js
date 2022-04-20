@@ -7,7 +7,7 @@ const userSchema = new mongoose.Schema({
     profilePic: {type:String, default: ""},
     addedOn: {type:Number, default: ""}
 
-})
+});
 
 
 userSchema.method({
