@@ -39,7 +39,7 @@ function App() {
     <Container>
       <ContactListComponent setChat={setChat}/>
       {selectedChat?(
-        <ConversationComponent />
+        <ConversationComponent selectedChat = {selectedChat} />
       ) : (
       <Placeholder>
         <ChatPlaceholder src="/welcome-placeholder.jpeg"/>

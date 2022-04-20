@@ -63,13 +63,13 @@ const Message = styled.div`
   background: ${props => (props.isYours ? "#daf8cb" : "white")};
 `;
 
-const ConversationComponent = () => {
+const ConversationComponent = (props) => {
+    const {selectedChat} = props;
     return(
     <Container>
         <Profileheader>
-        <ProfileImage src="/profile/elon.jpeg">
-            </ProfileImage>
-        Prudhvi Nakkina
+        <ProfileImage src={selectedChat.profilePic}/>
+         {selectedChat.name}
         </Profileheader>
         <MessageContainer>
             {messagesList.map((messageData) => (
