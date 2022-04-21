@@ -1,11 +1,11 @@
 //import {sendError} from "./index";
 import * as yup from "yup";
-import {sendError} from "./index.js";
+import {sendError} from "./index";
 
 
 
-// module.exports
-const toval = {
+
+module.exports = {
 validateCreateUser: async(req,res,next) => {
     const schema = yup.object().shape({
         name: yup.string().required(),
@@ -90,4 +90,4 @@ const validate = async (schema, reqData, res, next) => {
   };
   
 
-export default toval;
+

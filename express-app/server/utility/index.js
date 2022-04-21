@@ -10,8 +10,8 @@ const sendResponse = (res,data,message,success,code)=>{
       res.format({
         json: () => {
           res.send(responseObj);
-        },
-      });
+        }
+      })
     };
     const sendError = (res, data, msg) => {
       if (!res) {
