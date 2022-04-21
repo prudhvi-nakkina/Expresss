@@ -35,6 +35,12 @@ module.exports = {
          sendResponse(res, channelList, "Group List Fetched", true, 200);
     },
     sendMessage: async(req,res)=>{
+    const requestData =  req.body;
+    ChannelModel.findOneAndUpdateData(
+        {_id:requestData.channelId},
+        {$push: {messages: requestData.messages}}
+        );
+        sendResponse(res, {}, "Message Sent Successfully", true, 200);
 
     },
     searchUser: async (req,res)=>{
