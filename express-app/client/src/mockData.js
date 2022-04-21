@@ -8,7 +8,7 @@ export const contactList = [
   },
   {
     id: 2,
-    name: "Akhil Jpeg",
+    name: "Akhil Sai Koppanatham",
     profilePic: "/profile/jeff.jpeg",
     lastText: `I'm with john`,
     lastTextTime: "12:45 PM",
