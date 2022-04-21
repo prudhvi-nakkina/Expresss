@@ -22,10 +22,18 @@ module.exports = {
 
     },
     createChannel: async(req,res)=>{
+        const channelModel = new ChannelModel(req.body)
+        await channelModel.saveData();
+        sendResponse(res, channelModel, "Group Created Successfuully", true, 200);
+    },
+
 
     },
     getChannelList: async(req,res)=>{
-
+         const requestData = req.query;
+         const channelList = await ChannelModel.findData({
+             "channelUsers._id" : requestData.userId
+         })sendResponse(res, channelList, "Group List Fetched", true, 200);
     },
     sendMessage: async(req,res)=>{
 
