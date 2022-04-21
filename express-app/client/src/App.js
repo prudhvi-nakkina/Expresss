@@ -33,11 +33,12 @@ const ChatPlaceholder = styled.img`
   object-fit: contain;
 `;
 
-function App() {
+function App(props) {
+  const {userInfo}=props;
   const [selectedChat, setChat] = useState()
   return (
     <Container>
-      <ContactListComponent setChat={setChat}/>
+      <ContactListComponent setChat={setChat} profileImg={userInfo.imageUrl}/>
       {selectedChat?(
         <ConversationComponent selectedChat = {selectedChat} />
       ) : (
