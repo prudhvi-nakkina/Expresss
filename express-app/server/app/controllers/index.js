@@ -1,9 +1,9 @@
-import UserModel from "../models/users";
-import ChannelModel from "../models/channels";
-import {sendResponse,sendError} from "../../utility";
+import UserModel from "../models/users.js";
+import ChannelModel from "../models/channels.js";
+import {sendResponse,sendError} from "../../utility/index.js";
 
-
-module.exports = {
+// module.exports 
+const toexpo = {
     createUser: async (req,res)=>{
         const userObj = new UserModel(req.body);
         await userObj.saveData();
@@ -36,5 +36,5 @@ module.exports = {
 
 
 
-
 };
+export default toexpo;

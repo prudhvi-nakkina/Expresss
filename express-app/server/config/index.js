@@ -1,8 +1,8 @@
 import bodyParser from "body-parser";
 import compression from "compression";
 import cors from "cors";
-
-module.exports = function (app) {
+ // const appd = 
+const appd = function (app) {
   // parse application/x-www-form-urlencoded
   app.use(bodyParser.urlencoded({ extended: true }));
   // parse application/json
@@ -12,3 +12,4 @@ module.exports = function (app) {
   // CORS
   app.use(cors());
 };
+export default appd;

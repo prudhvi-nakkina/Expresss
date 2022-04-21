@@ -1,7 +1,7 @@
 import APP from "express";
-import connectDB from "./dbConnection";
-import configureExpressApp from "./config";
-import applyRoutes from "./routes";
+import connectDB from "./dbConnection/index.js";
+import configureExpressApp from "./config/index.js";
+import applyRoutes from "./routes/index.js";
 const app = new APP();
 configureExpressApp(app);
 const PORT = 3005;

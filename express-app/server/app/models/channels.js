@@ -41,5 +41,5 @@ channelSchema.static({
 })
 
 
-export default mongoose.model('wc-user', channelSchema);
+export default mongoose.model('wc-channel', channelSchema);
 
