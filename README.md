@@ -19,5 +19,5 @@ User Stories
 2. As a user I want to use my existing mobile number to create an account so that I will be visible to my friends
 3. As a user I want to setup my express mood profile so that my contacts will know my current mood
 4. As a user I want to be available only to select people while I am in a particular mood so that not everyone can contact me
-5. As a user I want different mood profiles so that I can express my current mood like happy, sad, moody etc.,
+5. As a user I want different mood profiles so that I can express my current mood like happy, sad, moody etc.
 
