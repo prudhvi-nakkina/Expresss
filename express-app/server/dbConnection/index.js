@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 
-const DB_CONNECTION_URL = "mongodb://localhost:27017/test";
+const DB_CONNECTION_URL = "mongodb+srv://expresso-chat:KeeAqUvbC093nbo4@cluster0.wkeqy.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
+// const DB_CONNECTION_URL = "mongodb://localhost:27017/test";
 
 const connectDB = () => {
   console.log("DB trying to connect on " + new Date());
