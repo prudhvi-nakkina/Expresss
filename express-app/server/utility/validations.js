@@ -43,11 +43,11 @@ validateCreateChannel: async (req, res, next) => {
 
   validateSearchUser: async (req, res, next) => {
     const schema = yup.object().shape({
-        //email or phone or phoneNumber
-      phone: yup.string().required(),
+      email: yup.string().required(),
     });
     await validate(schema, req.query, res, next);
   },
+
 
 
   validateAddMessage: async (req, res, next) => {
