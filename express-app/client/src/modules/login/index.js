@@ -3,6 +3,8 @@ import styled from "styled-components";
 import { GoogleLogin } from "react-google-login";
 import App from "../../App";
 import cookieManager from "../../managers/cookieManager";
+import axios from 'axios';
+const API_BASE_URL = "http://localhost:3001";
 
 const Container = styled.div`
   display: flex;
@@ -66,16 +68,15 @@ const LoginComponent = () => {
   }, []);
 
   const responseGoogle = async (response) => {
-    // console.log(response);
     setUserInfo(response.profileObj);
-    console.log(userInfo);
-    // // await httpManager.createUser({
-    // //   email: response.profileObj.email,
-    // //   name: response.profileObj.name,
-    // //   profilePic: response.profileObj.imageUrl,
-    // // });
-    // setUserInfo(response.profileObj);
-    // cookieManager.setUserInfo(response.profileObj);
+    
+    await axios.createUser({
+      email: response.profileObj.email,
+      name: response.profileObj.name,
+      profilePic: response.profileObj.imageUrl,
+    });
+    setUserInfo(response.profileObj);
+    cookieManager.setUserInfo(response.profileObj);
 
   };
 
