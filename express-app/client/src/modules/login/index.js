@@ -93,6 +93,7 @@ const LoginComponent = () => {
                             <ol>
                                 <li>You need to Signin using your Google Account.</li>
                                 <li>You can anytime logout from the Web.</li>
+                                <li>Expresso lets you express yourself and connects with your friends with the same expression</li>
                                 <li>
                                     Click on Signin button to continue using the Expresso.
                                 </li>
