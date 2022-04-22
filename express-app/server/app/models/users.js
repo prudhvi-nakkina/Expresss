@@ -2,7 +2,6 @@ import mongoose from "mongoose";
 
 const userSchema = new mongoose.Schema({
     name: {type:String, default: ""},
-    phoneNumber: {type:Number, default: ""},
     password: {type:String, default: ""},
     profilePic: {type:String, default: ""},
     addedOn: {type:Number, default: ""}

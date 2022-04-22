@@ -33,18 +33,19 @@ const ChatPlaceholder = styled.img`
   object-fit: contain;
 `;
 
-function App() {
+function App(props) {
+  const {userInfo}=props;
   const [selectedChat, setChat] = useState()
   return (
     <Container>
-      <ContactListComponent setChat={setChat}/>
+      <ContactListComponent setChat={setChat} profileImg={userInfo.imageUrl}/>
       {selectedChat?(
         <ConversationComponent selectedChat = {selectedChat} />
       ) : (
       <Placeholder>
         <ChatPlaceholder src="/welcome-placeholder.jpeg"/>
         <span>Keep Your Phone Connected</span>
-        Express connects to your phone to sync messages.
+        Expresso lets you express yourself and connects with your friends with the same expression
       </Placeholder>
       )}
     </Container>
