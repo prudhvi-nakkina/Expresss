@@ -4,11 +4,24 @@ import {sendResponse,sendError} from "../../utility";
 
 
 module.exports = {
-    createUser: async (req,res)=>{
+    createUser: async (req, res) => {
+        const requestData = req.body;
+        const isUserExist = await UserModel.findOneData({
+          email: requestData.email,
+        });
+        if (isUserExist)
+          return sendResponse(
+            res,
+            isUserExist,
+            "User fetched successfully",
+            true,
+            200
+          );
+    
         const userObj = new UserModel(req.body);
         await userObj.saveData();
-        sendResponse(res,userObj, "user added successful", true ,200);
-    },
+        sendResponse(res, userObj, "User created successfully", true, 200);
+      },
 
     loginUser: async (req,res)=>{
       const requestData = req.body;
