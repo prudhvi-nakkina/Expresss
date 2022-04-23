@@ -66,7 +66,7 @@ const Message = styled.div`
 `;
 
 const ConversationComponent = (props) => {
-  const { selectedChat } = props;
+  const { selectedChat, userInfo } = props;
   const [text, setText] = useState("");
   const [pickerVisible, togglePicker] = useState(false);
   const [messageList, setMessageList] = useState([]);
@@ -77,6 +77,24 @@ const ConversationComponent = (props) => {
   const onEnterPress = (event) => {
     if (event.key === "Enter") {
       if (!messageList || !messageList.length) {
+        const reqData=[
+          {
+            email:userInfo.email,
+            name:userInfo.name,
+            profilePic:userInfo.profilePic,
+          },
+          {
+            email:selectedChat.email,
+            name:selectedChat.name,
+            profilePic:selectedChat.profilePic,
+          },
+          {
+            email:"",
+            name:"",
+            profilePic:"",
+          }
+        ]
+        const channelResponse = await httpManager.createChannel(reqData);
       }
       const messages = [...messageList];
       messages.push({
