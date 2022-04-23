@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { contactList } from "../mockData";
-import { useState } from "react";
+import React, { useEffect, useState } from "react";
+
 const Container = styled.div`
   display: flex;
   flex-direction: column;
