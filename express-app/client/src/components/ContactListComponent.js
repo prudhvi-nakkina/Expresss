@@ -1,6 +1,8 @@
 import styled from "styled-components";
 import { contactList } from "../mockData";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
+import httpManager from "../managers/httpManager";
+import utility from "../modules/login/utility";
 
 const Container = styled.div`
   display: flex;
@@ -94,9 +96,13 @@ const MessageTime = styled.span`
   color: rgba(0, 0, 0, 0.45);
   white-space: nowrap;
 `;
-
+const SearchResults = styled.div`
+  width: 100%;
+  height: 100px;
+`;
 const ContactComponent = (props) => {
   const { userData, setChat } = props;
+
   return (
     <ContactItem onClick={() => setChat(userData)}>
       <ProfileIcon src={userData.profilePic}></ProfileIcon>
@@ -112,9 +118,13 @@ const ContactComponent = (props) => {
 const ContactListComponent = (props) => {
   const { imageUrl } = props;
   const [searchString, setSearchString] = useState("");
-
-  const onSearchTextChanged = (searchText) => {
+  const [searchResult, setSearchResult] = useState("");
+  const onSearchTextChanged = async (searchText) => {
     setSearchString(searchText);
+    if (!utility.validateEmail(searchText)) return;
+    const userData = await httpManager.searchUser(searchText);
+    console.log("====", userData.data.responseData);
+    if (userData.data?.success) setSearchResult(userData.data.responseData);
   };
   return (
     <Container>
@@ -131,6 +141,11 @@ const ContactListComponent = (props) => {
           ></SearchInput>
         </SearchContainer>
       </SearchBox>
+      {searchResult && (
+        <SearchResults>
+          <ContactComponent userData={searchResult} setChat={props.setChat} />
+        </SearchResults>
+      )}
       {contactList.map((userData) => (
         <ContactComponent userData={userData} setChat={props.setChat} />
       ))}
