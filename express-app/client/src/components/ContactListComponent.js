@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { contactList } from "../mockData";
-
+import { useState } from "react";
 const Container = styled.div`
   display: flex;
   flex-direction: column;
@@ -58,7 +58,7 @@ const ContactItem = styled.div`
   cursor: pointer;
   padding: 15px 12px;
   :hover {
-      background: #ebebeb;
+    background: #ebebeb;
   }
 `;
 
@@ -94,46 +94,47 @@ const MessageTime = styled.span`
   white-space: nowrap;
 `;
 
-const ContactComponent = (props) =>{
-
+const ContactComponent = (props) => {
   const { userData, setChat } = props;
-  return <ContactItem onClick={() => setChat(userData)}>
+  return (
+    <ContactItem onClick={() => setChat(userData)}>
       <ProfileIcon src={userData.profilePic}></ProfileIcon>
       <ContactInfo>
-          <ContactName>
-              {userData.name}
-          </ContactName>
-          <MessageText>
-              {userData.lastText}
-          </MessageText>
+        <ContactName>{userData.name}</ContactName>
+        <MessageText>{userData.lastText}</MessageText>
       </ContactInfo>
-      <MessageTime>
-          {userData.lastTextTime}
-      </MessageTime>
-    </ContactItem>;
-}
-
+      <MessageTime>{userData.lastTextTime}</MessageTime>
+    </ContactItem>
+  );
+};
 
 const ContactListComponent = (props) => {
-  const {imageUrl} = props;
-    return(
+  const { imageUrl } = props;
+  const [searchString, setSearchString] = useState("");
+
+  const onSearchTextChanged = (searchText) => {
+    setSearchString(searchText);
+  };
+  return (
     <Container>
-        <ProfileInfoDiv>
-            <ProfileImage src={imageUrl||"/profile/elon.jpeg"}>
-            </ProfileImage>
-        </ProfileInfoDiv>
-        <SearchBox>
-            <SearchContainer>
-                <SearchIcon src={"/search-icon.svg"}></SearchIcon>
-                <SearchInput placeholder="Search or start new chat">
-                </SearchInput>
-            </SearchContainer>
-        </SearchBox>
-        {contactList.map((userData) => (
-            <ContactComponent userData = {userData} setChat={props.setChat} />
-        ))}
+      <ProfileInfoDiv>
+        <ProfileImage src={imageUrl || "/profile/elon.jpeg"}></ProfileImage>
+      </ProfileInfoDiv>
+      <SearchBox>
+        <SearchContainer>
+          <SearchIcon src={"/search-icon.svg"}></SearchIcon>
+          <SearchInput
+            placeholder="Search or start new chat"
+            value={searchString}
+            onChange={(e) => onSearchTextChanged(e.target.value)}
+          ></SearchInput>
+        </SearchContainer>
+      </SearchBox>
+      {contactList.map((userData) => (
+        <ContactComponent userData={userData} setChat={props.setChat} />
+      ))}
     </Container>
-    );
+  );
 };
 
 export default ContactListComponent;
