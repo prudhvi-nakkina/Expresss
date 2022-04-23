@@ -5,11 +5,11 @@ import Picker from "emoji-picker-react";
 import React, { useState } from "react";
 
 const Container = styled.div`
-display: flex;
-flex-direction: column;
-height: 100%;
-flex: 3;
-background: white;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  flex: 3;
+  background: white;
 `;
 
 const Profileheader = styled.div`
@@ -51,7 +51,7 @@ const MessageContainer = styled.div`
 `;
 
 const MessageDiv = styled.div`
-  justify-content: ${props => (props.isYours ? "flex-end" : "flex-start")};
+  justify-content: ${(props) => (props.isYours ? "flex-end" : "flex-start")};
   display: flex;
   margin: 5px 15px;
 `;
@@ -62,59 +62,71 @@ const Message = styled.div`
   padding: 8px 10px;
   font-size: 14px;
   border-radius: 4px;
-  background: ${props => (props.isYours ? "#daf8cb" : "white")};
+  background: ${(props) => (props.isYours ? "#daf8cb" : "white")};
 `;
 
 const ConversationComponent = (props) => {
-    const {selectedChat} = props;
-    const [text, setText] = useState("");
-    const [pickerVisible, togglePicker] = useState(false);
-    const [messageList, setMessageList] = useState(messagesList);
-    const onEmojiClick = (event, emojiObj) => {
-        setText(text + emojiObj.emoji);
-        togglePicker(false);
-    };
-    const onEnterPress=(event) => {
-        if (event.key === "Enter") {
-            const messages = [...messageList]
-            messages.push(
-                {
-                    id: 0,
-                    messageType: "TEXT",
-                    text,
-                    senderID: 0,
-                    addedOn: "12:17 PM",
-                }
-            );
-            setMessageList(messages)
-            setText("")
-        }
-    };
-    return(
+  const { selectedChat } = props;
+  const [text, setText] = useState("");
+  const [pickerVisible, togglePicker] = useState(false);
+  const [messageList, setMessageList] = useState([]);
+  const onEmojiClick = (event, emojiObj) => {
+    setText(text + emojiObj.emoji);
+    togglePicker(false);
+  };
+  const onEnterPress = (event) => {
+    if (event.key === "Enter") {
+      if (!messageList || !messageList.length) {
+      }
+      const messages = [...messageList];
+      messages.push({
+        id: 0,
+        messageType: "TEXT",
+        text,
+        senderID: 0,
+        addedOn: "12:17 PM",
+      });
+      setMessageList(messages);
+      setText("");
+    }
+  };
+  return (
     <Container>
-        <Profileheader>
-        <ProfileImage src={selectedChat.profilePic}/>
-         {selectedChat.name}
-        </Profileheader>
-        <MessageContainer>
-            {messageList.map((messageData) => (
-                <MessageDiv isYours={messageData.senderID === 0}>
-                <Message isYours={messageData.senderID === 0}>
-                    {messageData.text}
-                </Message>
-            </MessageDiv>
-            ))}
-        </MessageContainer>
-        <ChatBox>
-            <SearchContainer>
-                {pickerVisible && (<Picker pickerStyle={{position: "absolute", bottom: "60px"}} onEmojiClick={onEmojiClick} />)}
-                <EmojiImage src={"/data.svg"} onClick={() => togglePicker(!pickerVisible)}></EmojiImage>
-                <SearchInput placeholder="Type a Message" value = {text} onKeyDown={onEnterPress} onChange={(e) => setText(e.target.value)}>
-                </SearchInput>
-            </SearchContainer>
-        </ChatBox>
+      <Profileheader>
+        <ProfileImage src={selectedChat.profilePic} />
+        {selectedChat.name}
+      </Profileheader>
+      <MessageContainer>
+        {messageList.map((messageData) => (
+          <MessageDiv isYours={messageData.senderID === 0}>
+            <Message isYours={messageData.senderID === 0}>
+              {messageData.text}
+            </Message>
+          </MessageDiv>
+        ))}
+      </MessageContainer>
+      <ChatBox>
+        <SearchContainer>
+          {pickerVisible && (
+            <Picker
+              pickerStyle={{ position: "absolute", bottom: "60px" }}
+              onEmojiClick={onEmojiClick}
+            />
+          )}
+          <EmojiImage
+            src={"/data.svg"}
+            onClick={() => togglePicker(!pickerVisible)}
+          ></EmojiImage>
+          <SearchInput
+            placeholder="Type a Message"
+            value={text}
+            onKeyDown={onEnterPress}
+            onChange={(e) => setText(e.target.value)}
+          ></SearchInput>
+        </SearchContainer>
+      </ChatBox>
     </Container>
-    );
-}
+  );
+};
 
 export default ConversationComponent;
