@@ -36,13 +36,21 @@ const ChatPlaceholder = styled.img`
 function App(props) {
   const { userInfo } = props;
   const [selectedChat, setChat] = useState();
+  const [refreshContactList, toggleRefreshContactList] = useState(false);
   return (
     <Container>
-      <ContactListComponent setChat={setChat} profileImg={userInfo.imageUrl} />
+      <ContactListComponent
+        setChat={setChat}
+        profileImg={userInfo.imageUrl}
+        refreshContactList={refreshContactList}
+      />
       {selectedChat ? (
         <ConversationComponent
           selectedChat={selectedChat}
           userInfo={userInfo}
+          refreshContactList={() =>
+            toggleRefreshContactList(!refreshContactList)
+          }
         />
       ) : (
         <Placeholder>

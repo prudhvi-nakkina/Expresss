@@ -67,7 +67,7 @@ const Message = styled.div`
 `;
 
 const ConversationComponent = (props) => {
-  const { selectedChat, userInfo } = props;
+  const { selectedChat, userInfo, refreshContactList } = props;
   const [text, setText] = useState("");
   const [pickerVisible, togglePicker] = useState(false);
   const [messageList, setMessageList] = useState([]);
@@ -98,6 +98,7 @@ const ConversationComponent = (props) => {
         ]
         const channelResponse = await httpManager.createChannel({channelUsers});
         channelId = channelResponse.data.responseData._id;
+        refreshContactList();
       } 
       const messages = [...messageList];
     const msgReqData={
