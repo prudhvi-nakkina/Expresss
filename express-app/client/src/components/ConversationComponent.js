@@ -3,6 +3,7 @@ import { SearchContainer, SearchInput } from "./ContactListComponent";
 import { messagesList } from "../mockData";
 import Picker from "emoji-picker-react";
 import React, { useState } from "react";
+import httpManager from "../managers/httpManager";
 
 const Container = styled.div`
   display: flex;
@@ -75,6 +76,7 @@ const ConversationComponent = (props) => {
     togglePicker(false);
   };
   const onEnterPress = (event) => {
+    let channelId = ""
     if (event.key === "Enter") {
       if (!messageList || !messageList.length) {
         const reqData=[
@@ -95,15 +97,19 @@ const ConversationComponent = (props) => {
           }
         ]
         const channelResponse = await httpManager.createChannel(reqData);
+        channelId = channelResponse.data.responseData._id;
       }
       const messages = [...messageList];
-      messages.push({
-        id: 0,
-        messageType: "TEXT",
-        text,
-        senderID: 0,
-        addedOn: "12:17 PM",
-      });
+    const msgReqData={
+       text,
+        senderEmail: userInfo.email,
+        addedOn: new Date().getTime(),
+      };
+      const messageResponse = await httpManager.sendMessage({
+         channelId,
+         msgReqData 
+      }); 
+      messages.push();
       setMessageList(messages);
       setText("");
     }
