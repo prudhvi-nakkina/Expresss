@@ -50,9 +50,9 @@ module.exports = {
       channelId: yup.string().required(),
       messages: yup.object().shape({
         //sender id  or sender-email
-        senderId: yup.string().required(),
+        senderEmail: yup.string().required(),
         //text or message
-        message: yup.string().required(),
+        text: yup.string().required(),
       }),
     });
     await validate(schema, req.body, res, next);

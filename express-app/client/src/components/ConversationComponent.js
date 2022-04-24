@@ -96,11 +96,8 @@ const ConversationComponent = (props) => {
             profilePic:"",
           }
         ]
-        console.log("===",channelUsers);
         const channelResponse = await httpManager.createChannel({channelUsers});
-        console.log("===",channelResponse);
         channelId = channelResponse.data.responseData._id;
-        console.log("===", channelId);
       } 
       const messages = [...messageList];
     const msgReqData={
