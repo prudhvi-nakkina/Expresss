@@ -107,7 +107,7 @@ const ContactComponent = (props) => {
     (userObj) => userObj.email !== userInfo.email
   );
   return (
-    <ContactItem onClick={() => setChat(userData)}>
+    <ContactItem onClick={() => setChat(otherUser)}>
       <ProfileIcon src={userData.profilePic}></ProfileIcon>
       <ContactInfo>
         <ContactName>{otherUser?.name}</ContactName>
