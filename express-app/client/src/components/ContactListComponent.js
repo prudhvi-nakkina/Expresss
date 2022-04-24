@@ -116,9 +116,22 @@ const ContactComponent = (props) => {
 };
 
 const ContactListComponent = (props) => {
-  const { imageUrl } = props;
+  const { imageUrl, refreshContactList } = props;
   const [searchString, setSearchString] = useState("");
   const [searchResult, setSearchResult] = useState("");
+  const [contactList, setContactList] = useState([]);
+
+  const refreshContacts = async () => {
+    const contactListData = await httpManager.getChannelList(userInfo.email);
+    setContactList(contactListData.data.responseData);
+    setSearchString();
+    setSearchResult();
+  };
+
+  useEffect(() => {
+    refreshContacts();
+  }, [refreshContactList]);
+
   const onSearchTextChanged = async (searchText) => {
     setSearchString(searchText);
     if (!utility.validateEmail(searchText)) return;
