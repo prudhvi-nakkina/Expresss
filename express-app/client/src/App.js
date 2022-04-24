@@ -34,19 +34,32 @@ const ChatPlaceholder = styled.img`
 `;
 
 function App(props) {
-  const {userInfo}=props;
-  const [selectedChat, setChat] = useState()
+  const { userInfo } = props;
+  const [selectedChat, setChat] = useState();
+  const [refreshContactList, toggleRefreshContactList] = useState(false);
   return (
     <Container>
-      <ContactListComponent setChat={setChat} profileImg={userInfo.imageUrl}/>
-      {selectedChat?(
-        <ConversationComponent selectedChat = {selectedChat} />
+      <ContactListComponent
+        setChat={setChat}
+        userInfo={userInfo}
+        profileImg={userInfo.imageUrl}
+        refreshContactList={refreshContactList}
+      />
+      {selectedChat ? (
+        <ConversationComponent
+          selectedChat={selectedChat}
+          userInfo={userInfo}
+          refreshContactList={() =>
+            toggleRefreshContactList(!refreshContactList)
+          }
+        />
       ) : (
-      <Placeholder>
-        <ChatPlaceholder src="/welcome-placeholder.jpeg"/>
-        <span>Keep Your Phone Connected</span>
-        Expresso lets you express yourself and connects with your friends with the same expression
-      </Placeholder>
+        <Placeholder>
+          <ChatPlaceholder src="/welcome-placeholder.jpeg" />
+          <span>Keep Your Phone Connected</span>
+          Expresso lets you express yourself and connects with your friends with
+          the same expression
+        </Placeholder>
       )}
     </Container>
   );

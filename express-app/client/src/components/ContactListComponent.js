@@ -1,5 +1,8 @@
 import styled from "styled-components";
 import { contactList } from "../mockData";
+import React, { useState } from "react";
+import httpManager from "../managers/httpManager";
+import utility from "../modules/login/utility";
 
 const Container = styled.div`
   display: flex;
@@ -58,7 +61,7 @@ const ContactItem = styled.div`
   cursor: pointer;
   padding: 15px 12px;
   :hover {
-      background: #ebebeb;
+    background: #ebebeb;
   }
 `;
 
@@ -93,47 +96,83 @@ const MessageTime = styled.span`
   color: rgba(0, 0, 0, 0.45);
   white-space: nowrap;
 `;
-
-const ContactComponent = (props) =>{
-
-  const { userData, setChat } = props;
-  return <ContactItem onClick={() => setChat(userData)}>
+const SearchResults = styled.div`
+  width: 100%;
+  height: 100px;
+`;
+const ContactComponent = (props) => {
+  const { userData, setChat, userInfo } = props;
+  const [searchResult, setSearchResult] = useState();
+  const otherUser = userData.channelUsers?.find(
+    (userObj) => userObj.email !== userInfo.email
+  );
+  return (
+    <ContactItem onClick={() => setChat(otherUser)}>
       <ProfileIcon src={userData.profilePic}></ProfileIcon>
       <ContactInfo>
-          <ContactName>
-              {userData.name}
-          </ContactName>
-          <MessageText>
-              {userData.lastText}
-          </MessageText>
+        <ContactName>{otherUser?.name}</ContactName>
+        <MessageText>{userData?.text}</MessageText>
       </ContactInfo>
-      <MessageTime>
-          {userData.lastTextTime}
-      </MessageTime>
-    </ContactItem>;
-}
-
+      <MessageTime>{userData?.lastTextTime}</MessageTime>
+    </ContactItem>
+  );
+};
 
 const ContactListComponent = (props) => {
-  const {imageUrl} = props;
-    return(
+  const { userInfo, refreshContactList } = props;
+  const [searchString, setSearchString] = useState("");
+  const [searchResult, setSearchResult] = useState("");
+  const [contactList, setContactList] = useState([]);
+
+  const refreshContacts = async () => {
+    const contactListData = await httpManager.getChannelList(userInfo.email);
+    setContactList(contactListData.data.responseData);
+    setSearchString();
+    setSearchResult();
+  };
+
+  useEffect(() => {
+    refreshContacts();
+  }, [refreshContactList]);
+
+  const onSearchTextChanged = async (searchText) => {
+    setSearchString(searchText);
+    if (!utility.validateEmail(searchText)) return;
+    const userData = await httpManager.searchUser(searchText);
+    console.log("====", userData.data.responseData);
+    if (userData.data?.success) setSearchResult(userData.data.responseData);
+  };
+  return (
     <Container>
-        <ProfileInfoDiv>
-            <ProfileImage src={imageUrl||"/profile/elon.jpeg"}>
-            </ProfileImage>
-        </ProfileInfoDiv>
-        <SearchBox>
-            <SearchContainer>
-                <SearchIcon src={"/search-icon.svg"}></SearchIcon>
-                <SearchInput placeholder="Search or start new chat">
-                </SearchInput>
-            </SearchContainer>
-        </SearchBox>
-        {contactList.map((userData) => (
-            <ContactComponent userData = {userData} setChat={props.setChat} />
-        ))}
+      <ProfileInfoDiv>
+        <ProfileImage
+          src={userInfo.imageUrl || "/profile/elon.jpeg"}
+        ></ProfileImage>
+      </ProfileInfoDiv>
+      <SearchBox>
+        <SearchContainer>
+          <SearchIcon src={"/search-icon.svg"}></SearchIcon>
+          <SearchInput
+            placeholder="Search or start new chat"
+            value={searchString}
+            onChange={(e) => onSearchTextChanged(e.target.value)}
+          ></SearchInput>
+        </SearchContainer>
+      </SearchBox>
+      {searchResult && (
+        <SearchResults>
+          <ContactComponent userData={searchResult} setChat={props.setChat} />
+        </SearchResults>
+      )}
+      {contactList.map((userData) => (
+        <ContactComponent
+          userData={userData}
+          setChat={props.setChat}
+          userInfo={userInfo}
+        />
+      ))}
     </Container>
-    );
+  );
 };
 
 export default ContactListComponent;

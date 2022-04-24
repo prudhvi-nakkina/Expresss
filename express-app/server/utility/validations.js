@@ -1,33 +1,30 @@
 //import {sendError} from "./index";
 import * as yup from "yup";
-import {sendError} from "./index";
-
-
-
+import { sendError } from "./index";
 
 module.exports = {
-validateCreateUser: async(req,res,next) => {
+  validateCreateUser: async (req, res, next) => {
     const schema = yup.object().shape({
-        name: yup.string().required(),
-        email: yup.string().required(),
-        profilePic: yup.string(),
-      });
-      await validate(schema, req.body, res, next);
-
-},
-validateCreateChannel: async (req, res, next) => {
+      name: yup.string().required(),
+      email: yup.string().required(),
+      profilePic: yup.string(),
+    });
+    await validate(schema, req.body, res, next);
+  },
+  validateCreateChannel: async (req, res, next) => {
     const schema = yup.object().shape({
       channelUsers: yup
         .array()
         .of(
           yup.object().shape({
-              //phone or email
-              //phone or -id
-            _id: yup.string().required(),
+            //phone or email
+            //phone or -id
+            email: yup.string().required(),
             name: yup.string().required(),
             profilePic: yup.string(),
-          }),
-        ).length(2)
+          })
+        )
+        .length(2)
         .required(),
     });
     await validate(schema, req.body, res, next);
@@ -35,8 +32,8 @@ validateCreateChannel: async (req, res, next) => {
 
   validateGetChannelList: async (req, res, next) => {
     const schema = yup.object().shape({
-        //userId or email
-      userId: yup.string().required(),
+      //userId or email
+      email: yup.string().required(),
     });
     await validate(schema, req.query, res, next);
   },
@@ -48,46 +45,40 @@ validateCreateChannel: async (req, res, next) => {
     await validate(schema, req.query, res, next);
   },
 
-
-
   validateAddMessage: async (req, res, next) => {
     const schema = yup.object().shape({
       channelId: yup.string().required(),
       messages: yup.object().shape({
-          //sender id  or sender-email
-        senderId: yup.string().required(),
+        //sender id  or sender-email
+        senderEmail: yup.string().required(),
         //text or message
-        message: yup.string().required(),
+        text: yup.string().required(),
       }),
     });
     await validate(schema, req.body, res, next);
   },
 
-  /// added validate login check for extra 
+  /// added validate login check for extra
 
-   validateLogin: async(req,res,next)=> {
-       const schema = yup.object().shape({
-           phoneNumber: yup.number().required(),
-           password: yup.string().required(),
-       });
-       await validate(schema,req.body,res,next);
-   },
+  validateLogin: async (req, res, next) => {
+    const schema = yup.object().shape({
+      phoneNumber: yup.number().required(),
+      password: yup.string().required(),
+    });
+    await validate(schema, req.body, res, next);
+  },
 };
 
-
 const validate = async (schema, reqData, res, next) => {
-    try {
-      await schema.validate(reqData, { abortEarly: false });
-      next();
-    } catch (e) {
-      const errors = e.inner.map(({ path, message, value }) => ({
-        path,
-        message,
-        value,
-      }));
-      sendError(res, errors, "Invalid Request");
-    }
-  };
-  
-
-
+  try {
+    await schema.validate(reqData, { abortEarly: false });
+    next();
+  } catch (e) {
+    const errors = e.inner.map(({ path, message, value }) => ({
+      path,
+      message,
+      value,
+    }));
+    sendError(res, errors, "Invalid Request");
+  }
+};
