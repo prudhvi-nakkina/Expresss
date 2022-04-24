@@ -116,7 +116,7 @@ const ContactComponent = (props) => {
 };
 
 const ContactListComponent = (props) => {
-  const { imageUrl, refreshContactList } = props;
+  const { userInfo, refreshContactList } = props;
   const [searchString, setSearchString] = useState("");
   const [searchResult, setSearchResult] = useState("");
   const [contactList, setContactList] = useState([]);

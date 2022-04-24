@@ -41,6 +41,7 @@ function App(props) {
     <Container>
       <ContactListComponent
         setChat={setChat}
+        userInfo={userInfo}
         profileImg={userInfo.imageUrl}
         refreshContactList={refreshContactList}
       />
