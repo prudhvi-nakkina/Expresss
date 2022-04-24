@@ -101,16 +101,19 @@ const SearchResults = styled.div`
   height: 100px;
 `;
 const ContactComponent = (props) => {
-  const { userData, setChat } = props;
-
+  const { userData, setChat, userInfo } = props;
+  const [searchResult, setSearchResult] = useState();
+  const otherUser = userData.channelUsers?.find(
+    (userObj) => userObj.email !== userInfo.email
+  );
   return (
     <ContactItem onClick={() => setChat(userData)}>
       <ProfileIcon src={userData.profilePic}></ProfileIcon>
       <ContactInfo>
-        <ContactName>{userData.name}</ContactName>
-        <MessageText>{userData.lastText}</MessageText>
+        <ContactName>{otherUser?.name}</ContactName>
+        <MessageText>{userData?.text}</MessageText>
       </ContactInfo>
-      <MessageTime>{userData.lastTextTime}</MessageTime>
+      <MessageTime>{userData?.lastTextTime}</MessageTime>
     </ContactItem>
   );
 };
@@ -142,7 +145,9 @@ const ContactListComponent = (props) => {
   return (
     <Container>
       <ProfileInfoDiv>
-        <ProfileImage src={imageUrl || "/profile/elon.jpeg"}></ProfileImage>
+        <ProfileImage
+          src={userInfo.imageUrl || "/profile/elon.jpeg"}
+        ></ProfileImage>
       </ProfileInfoDiv>
       <SearchBox>
         <SearchContainer>
@@ -160,7 +165,11 @@ const ContactListComponent = (props) => {
         </SearchResults>
       )}
       {contactList.map((userData) => (
-        <ContactComponent userData={userData} setChat={props.setChat} />
+        <ContactComponent
+          userData={userData}
+          setChat={props.setChat}
+          userInfo={userInfo}
+        />
       ))}
     </Container>
   );
