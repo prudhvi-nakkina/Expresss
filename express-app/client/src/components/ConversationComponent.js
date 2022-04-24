@@ -79,11 +79,11 @@ const ConversationComponent = (props) => {
     let channelId = ""
     if (event.key === "Enter") {
       if (!messageList || !messageList.length) {
-        const reqData=[
+        const channelUsers=[
           {
             email:userInfo.email,
             name:userInfo.name,
-            profilePic:userInfo.profilePic,
+            profilePic:userInfo.imageUrl,
           },
           {
             email:selectedChat.email,
@@ -96,9 +96,12 @@ const ConversationComponent = (props) => {
             profilePic:"",
           }
         ]
-        const channelResponse = await httpManager.createChannel(reqData);
+        console.log("===",channelUsers);
+        const channelResponse = await httpManager.createChannel({channelUsers});
+        console.log("===",channelResponse);
         channelId = channelResponse.data.responseData._id;
-      }
+        console.log("===", channelId);
+      } 
       const messages = [...messageList];
     const msgReqData={
        text,
@@ -109,6 +112,7 @@ const ConversationComponent = (props) => {
          channelId,
          msgReqData 
       }); 
+      console.log("===", channelId, msgReqData ); 
       messages.push();
       setMessageList(messages);
       setText("");
