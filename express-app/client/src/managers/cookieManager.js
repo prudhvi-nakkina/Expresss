@@ -2,15 +2,16 @@ import Cookies from "universal-cookie";
 
 const cookies = new Cookies();
 
-cookies.set('myCat', 'Pacman', { path: '/' });
-console.log(cookies.get('myCat'));
-
 const setUserInfo = (userInfo) => {
-    cookies.set('userInfo', JSON.stringify(), { path: '/' })
-}
-const getUserInfo = () => {
-    cookies.get('userInfo');
+  cookies.set("userInfo", JSON.stringify(userInfo), { path: "/" });
 };
-const cookieManager={setUserInfo,getUserInfo};
 
+const getUserInfo = () => {
+  return cookies.get("userInfo");
+};
+
+export const cookieManager = {
+  setUserInfo,
+  getUserInfo,
+};
 export default cookieManager;
