@@ -83,15 +83,15 @@ const LoginComponent = () => {
         <App userInfo={userInfo} />
       ) : (
         <Container>
-          <Header>WHATSAPP WEB CLONE</Header>
+          <Header>Expresso!</Header>
           <CardView>
             <Instructions>
-              <Heading>To use WhatsApp on your computer:</Heading>
+              <Heading>To use Expresso on your computer:</Heading>
               <ol>
                 <li>You need to Signin using your Google Account.</li>
                 <li>You can anytime logout from the Web.</li>
                 <li>
-                  Click on Signin button to continue using the Whatsapp Clone.
+                  Click on Signin button to continue using Expresso.
                 </li>
               </ol>
               <GoogleLogin

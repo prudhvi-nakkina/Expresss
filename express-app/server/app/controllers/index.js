@@ -1,5 +1,5 @@
-import UserModel from "../models/users";
-import ChannelModel from "../models/channels";
+import UserModel from "../models/user";
+import ChannelModel from "../models/channel";
 import { sendResponse, sendError } from "../../utility";
 
 module.exports = {
@@ -22,19 +22,33 @@ module.exports = {
     sendResponse(res, userObj, "User created successfully", true, 200);
   },
 
-  loginUser: async (req, res) => {
-    const requestData = req.body;
-    const isUserExist = await UserModel.findOneData({
-      phoneNumber: requestData.phoneNumber,
-      password: requestData.password,
-    });
-    if (!isUserExist) return sendError(res, {}, "Invalid Credentials");
-    sendResponse(res, isUserExist, "User logged in Successfully", true, 200);
-  },
   createChannel: async (req, res) => {
-    const channelModel = new ChannelModel(req.body);
+    const channelUsers = req.body.channelUsers;
+    const firstUser = channelUsers[0];
+    const secondUser = channelUsers[1];
+    let isChannelAlreadyExist = false;
+    let channelModel;
+
+    const channelList = await ChannelModel.findData({
+      "channelUsers.email": firstUser.email,
+    });
+
+    if (channelList && channelList.length) {
+      channelList.forEach((channel) => {
+        isChannelAlreadyExist = channel.channelUsers.find(
+          (user) => user.email === secondUser.email
+        );
+        if (isChannelAlreadyExist)
+          channelModel = channel
+      });
+    }
+
+    if (isChannelAlreadyExist)
+      return sendResponse(res, channelModel, "Channel created successfully", true, 200);
+
+    channelModel = new ChannelModel(req.body);
     await channelModel.saveData();
-    sendResponse(res, channelModel, "Group Created Successfuully", true, 200);
+    sendResponse(res, channelModel, "Channel created successfully", true, 200);
   },
 
   getChannelList: async (req, res) => {
@@ -42,16 +56,9 @@ module.exports = {
     const channelList = await ChannelModel.findData({
       "channelUsers.email": requestData.email,
     });
-    sendResponse(res, channelList, "Group List Fetched", true, 200);
+    sendResponse(res, channelList, "Channel list fetched", true, 200);
   },
-  sendMessage: async (req, res) => {
-    const requestData = req.body;
-    ChannelModel.findOneAndUpdateData(
-      { _id: requestData.channelId },
-      { $push: { messages: requestData.messages } }
-    );
-    sendResponse(res, {}, "Message Sent Successfully", true, 200);
-  },
+
   searchUser: async (req, res) => {
     const requestData = req.query;
     const isUserExist = await UserModel.findOneData({
@@ -59,5 +66,14 @@ module.exports = {
     });
     if (!isUserExist) return sendError(res, {}, "No user found!");
     sendResponse(res, isUserExist, "User found successfully", true, 200);
+  },
+
+  sendMessage: async (req, res) => {
+    const requestData = req.body;
+    await ChannelModel.findOneAndUpdateData(
+      { _id: requestData.channelId },
+      { $push: { messages: requestData.messages } }
+    );
+    sendResponse(res, {}, "Message sent successfully", true, 200);
   },
 };

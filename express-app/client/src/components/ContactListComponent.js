@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import httpManager from "../managers/httpManager";
-import { contactList } from "../mockData";
 import utility from "../utility";
 
 const Container = styled.div`
