@@ -5,25 +5,11 @@ import ConversationComponent from "./components/ConversationComponent";
 
 const Container = styled.div`
   display: flex;
-  flex-direction: row;
   height: 100vh;
   width: 100%;
-  background: #f8f9fb;
-`;
-
-const Placeholder = styled.div`
-  flex: 3;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  flex-direction: row;
   align-items: center;
-  font-size: 14px;
-  color: rgba(0, 0, 0, 0.45);
-  gap: 10px;
-  span {
-    font-size: 32px;
-    color: #525252;
-  }
+  background: #f8f9fb;
 `;
 
 const ChatPlaceholder = styled.img`
@@ -32,17 +18,32 @@ const ChatPlaceholder = styled.img`
   border-radius: 50%;
   object-fit: contain;
 `;
+const Placeholder = styled.div`
+  flex: 3;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+  gap: 10px;
+  color: rgba(0, 0, 0, 0.45);
+
+  span {
+    font-size: 32px;
+    color: #525252;
+  }
+`;
 
 function App(props) {
   const { userInfo } = props;
   const [selectedChat, setChat] = useState();
   const [refreshContactList, toggleRefreshContactList] = useState(false);
+
   return (
     <Container>
       <ContactListComponent
         setChat={setChat}
         userInfo={userInfo}
-        profileImg={userInfo.imageUrl}
         refreshContactList={refreshContactList}
       />
       {selectedChat ? (
@@ -55,10 +56,9 @@ function App(props) {
         />
       ) : (
         <Placeholder>
-          <ChatPlaceholder src="/welcome-placeholder.jpeg" />
-          <span>Keep Your Phone Connected</span>
-          Expresso lets you express yourself and connects with your friends with
-          the same expression
+          <ChatPlaceholder src="/whatsapp-clone/welcome-placeholder.jpeg" />
+          <span>Connect with your Expressions</span>
+          Expresso lets connect with your friends with the same emotion. Share your emotion and have fun! together!
         </Placeholder>
       )}
     </Container>
