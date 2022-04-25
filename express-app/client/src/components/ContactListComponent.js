@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { contactList } from "../mockData";
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import httpManager from "../managers/httpManager";
 import utility from "../modules/login/utility";
 
