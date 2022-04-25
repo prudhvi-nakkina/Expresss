@@ -1,13 +1,11 @@
-import mongoose from "mongoose";
+const mongoose = require('mongoose')
 
 const userSchema = new mongoose.Schema({
-    name: {type:String, default: ""},
-    password: {type:String, default: ""},
-    profilePic: {type:String, default: ""},
-    addedOn: {type:Number, default: ""}
-
-});
-
+    name: { type: String, default: '' },
+    email: { type: String, default: '' },
+    profilePic: { type: String, default: '' },
+    addedOn: { type: Number, default: Date.now() }
+})
 
 userSchema.method({
     saveData: async function () {
@@ -29,7 +27,4 @@ userSchema.static({
         })
     },
 })
-
-
-export default mongoose.model('wc-user', userSchema);
-
+export default mongoose.model('wc-user', userSchema)

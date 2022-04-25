@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { SearchContainer, SearchInput } from "./ContactListComponent";
 import Picker from "emoji-picker-react";
-import { messagesList } from "../mockData";
 import httpManager from "../managers/httpManager";
 
 const Container = styled.div`

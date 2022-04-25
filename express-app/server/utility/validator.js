@@ -1,6 +1,5 @@
-//import {sendError} from "./index";
-import * as yup from "yup";
 import { sendError } from "./index";
+import * as yup from "yup";
 
 module.exports = {
   validateCreateUser: async (req, res, next) => {
@@ -11,20 +10,18 @@ module.exports = {
     });
     await validate(schema, req.body, res, next);
   },
+
   validateCreateChannel: async (req, res, next) => {
     const schema = yup.object().shape({
       channelUsers: yup
         .array()
         .of(
           yup.object().shape({
-            //phone or email
-            //phone or -id
             email: yup.string().required(),
             name: yup.string().required(),
             profilePic: yup.string(),
-          })
-        )
-        .length(2)
+          }),
+        ).length(2)
         .required(),
     });
     await validate(schema, req.body, res, next);
@@ -32,7 +29,6 @@ module.exports = {
 
   validateGetChannelList: async (req, res, next) => {
     const schema = yup.object().shape({
-      //userId or email
       email: yup.string().required(),
     });
     await validate(schema, req.query, res, next);
@@ -49,26 +45,13 @@ module.exports = {
     const schema = yup.object().shape({
       channelId: yup.string().required(),
       messages: yup.object().shape({
-        //sender id  or sender-email
         senderEmail: yup.string().required(),
-        //text or message
         text: yup.string().required(),
       }),
     });
     await validate(schema, req.body, res, next);
   },
-
-  /// added validate login check for extra
-
-  validateLogin: async (req, res, next) => {
-    const schema = yup.object().shape({
-      phoneNumber: yup.number().required(),
-      password: yup.string().required(),
-    });
-    await validate(schema, req.body, res, next);
-  },
 };
-
 const validate = async (schema, reqData, res, next) => {
   try {
     await schema.validate(reqData, { abortEarly: false });
