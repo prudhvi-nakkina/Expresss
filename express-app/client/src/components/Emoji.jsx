@@ -3,8 +3,8 @@ import React from 'react';
 const Emoji = props => {
     const { type,isSelected,handleOnClick }=props
     const mapLabelEmoji = {
-        "happy":"😀",
-        "sad":"☹️",
+        "happy":"😃",
+        "sad":"🙁",
         "angry":"😡",
         "sleepy":"😴"
     }
