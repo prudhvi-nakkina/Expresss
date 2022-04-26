@@ -9,6 +9,8 @@ module.exports = (app) => {
 
     app.post('/user', Validation.validateCreateUser,  Controller.createUser);
 
+    app.patch('/user-mood', Validation.validateChangeUserMood,  Controller.changeUserMood);
+
     app.get('/search-user', Validation.validateSearchUser, Controller.searchUser);
 
     app.post('/channel', Validation.validateCreateChannel, Controller.createChannel);
