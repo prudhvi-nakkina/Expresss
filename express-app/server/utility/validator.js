@@ -11,6 +11,14 @@ module.exports = {
     await validate(schema, req.body, res, next);
   },
 
+  validateChangeUserMood: async (req, res, next) => {
+    const schema = yup.object().shape({
+      mood: yup.string().required(),
+      email: yup.string().required(),
+    });
+    await validate(schema, req.body, res, next);
+  },
+
   validateCreateChannel: async (req, res, next) => {
     const schema = yup.object().shape({
       channelUsers: yup

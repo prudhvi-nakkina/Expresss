@@ -68,6 +68,28 @@ module.exports = {
     sendResponse(res, isUserExist, "User found successfully", true, 200);
   },
 
+  changeUserMood: async (req, res) => {
+    const requestData = req.body;
+    const isUserExist = await UserModel.findOneData({
+      email: requestData.email,
+    });
+    if (!isUserExist) return sendError(res, {}, "No user found!");
+    isUserExist.mood=requestData.mood;
+    
+    const modifiedUser ={
+      name:isUserExist.name,
+      email: isUserExist.email,
+      profilePic: isUserExist.profilePic,
+      mood: requestData.mood
+    }
+    let updatedData = await UserModel.findOneAndUpdateData({_id:requestData._id},modifiedUser);
+
+    
+ 
+    console.log(updatedData)
+    sendResponse(res, updatedData, "mood change successfully", true, 200);
+  },
+
   sendMessage: async (req, res) => {
     const requestData = req.body;
     await ChannelModel.findOneAndUpdateData(

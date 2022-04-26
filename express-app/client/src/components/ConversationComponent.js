@@ -52,7 +52,6 @@ const MessageContainer = styled.div`
   flex-direction: column;
   height: 100%;
   overflow-y: auto;
-  background: #e5ddd6;
 `;
 const MessageDiv = styled.div`
   display: flex;
@@ -75,10 +74,17 @@ const EmojiImage = styled.img`
   cursor: pointer;
 `;
 function ConversationComponent(props) {
-  const { selectedChat, userInfo, refreshContactList } = props;
+
+  const { selectedChat, userInfo, refreshContactList,currentMood } = props;
   const [text, setText] = useState("");
   const [pickerVisible, togglePicker] = useState(false);
   const [messageList, setMessageList] = useState([]);
+  const colorMoodMapper={
+    happy:"#ffd7b5 ",
+    sad: "#fcf3d4",
+    angry:"#c5e1a5",
+    sleepy:"#CAE9F5"
+  }
 
   useEffect(() => {
     setMessageList(selectedChat.channelData.messages);
@@ -129,7 +135,7 @@ function ConversationComponent(props) {
           <ContactName>{selectedChat.otherUser.name}</ContactName>
         </ProfileInfo>
       </ProfileHeader>
-      <MessageContainer>
+      <MessageContainer style={{background: `${colorMoodMapper[currentMood]}`}}>
         {messageList?.map((messageData) => (
           <MessageDiv isYours={messageData.senderEmail === userInfo.email}>
             <Message isYours={messageData.senderEmail === userInfo.email}>

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import httpManager from "../managers/httpManager";
 import utility from "../utility";
+import Emoji from './Emoji';
 
 const Container = styled.div`
   display: flex;
@@ -16,6 +17,7 @@ const ProfileInfoDiv = styled.div`
   display: flex;
   flex-direction: row;
   background: #ededed;
+  justify-content: space-between;
   padding: 10px;
 `;
 
@@ -51,7 +53,6 @@ const ContactItem = styled.div`
   align-items: center;
   width: 100%;
   border-bottom: 1px solid #f2f2f2;
-  background: white;
   cursor: pointer;
 
   :hover {
@@ -89,6 +90,7 @@ const ProfileImage = styled.img`
   width: 32px;
   height: 32px;
   border-radius: 50%;
+  position: "relative"
 `;
 const ProfileIcon = styled(ProfileImage)`
   width: 38px;
@@ -105,7 +107,13 @@ const SearchResults = styled.div`
 `;
 
 const ContactComponent = (props) => {
-  const { userData, setChat, userInfo } = props;
+  const colorMoodMapper={
+    happy:"#ffd7b5 ",
+    sad: "#fcf3d4",
+    angry:"#c5e1a5",
+    sleepy:"#CAE9F5"
+  }
+  const { userData, setChat, userInfo,mood } = props;
   const [searchResult, setSearchResult] = useState();
 
   const otherUser =
@@ -117,9 +125,8 @@ const ContactComponent = (props) => {
     userData.messages && userData.messages.length
       ? userData.messages[userData.messages.length - 1]
       : {};
-      
   return (
-    <ContactItem onClick={() => setChat({ channelData: userData, otherUser })}>
+    <ContactItem style={{background: `${colorMoodMapper[mood]}`}} onClick={() => setChat({ channelData: userData, otherUser })}>
       <ProfileIcon src={otherUser?.profilePic} />
       <ContactInfo>
         <ContactName>{otherUser?.name}</ContactName>
@@ -135,15 +142,36 @@ const ContactComponent = (props) => {
 
 function ContactListComponent(props) {
   const { userInfo, refreshContactList } = props;
+
+  const colorMoodHeaderMapper={
+    happy:"#ff9248",
+    sad: "#fae6a5",
+    angry:"#AED581",
+    sleepy:"#AFDCEB"
+  }
+ 
   const [searchString, setSearchString] = useState("");
   const [searchResult, setSearchResult] = useState("");
   const [contactList, setContactList] = useState([]);
+  const [currentMood,setCurrentMood] = useState("happy");
+
+  const handleCurrentMood=(mood)=>{
+    updateUserMood()
+    setCurrentMood(mood)
+    props.handleCurrentmood(mood)
+  }
 
   const refreshContacts = async () => {
     const contactListData = await httpManager.getChannelList(userInfo.email);
     setContactList(contactListData.data.responseData);
     setSearchString();
     setSearchResult();
+  };
+
+  const updateUserMood = async () => {
+    let modfiedUser= userInfo
+    modfiedUser.mood="happy"
+    const updateUserMoodData = await httpManager.changeUserMood(modfiedUser);
   };
 
   useEffect(() => {
@@ -160,10 +188,18 @@ function ContactListComponent(props) {
 
   return (
     <Container>
-      <ProfileInfoDiv>
+      <ProfileInfoDiv style={{background: `${colorMoodHeaderMapper[currentMood]}`}}>
+  <div>
         <ProfileImage
           src={userInfo.imageUrl || "/whatsapp-clone/profile/theindiandev.jpeg"}
         />
+        </div>
+        <div>
+          <Emoji type="happy" isSelected={currentMood === "happy"} handleOnClick={handleCurrentMood} />
+          <Emoji type="sad" isSelected={currentMood === "sad"} handleOnClick={handleCurrentMood} />
+          <Emoji type="angry" isSelected={currentMood === "angry"} handleOnClick={handleCurrentMood} />
+          <Emoji type="sleepy" isSelected={currentMood === "sleepy"} handleOnClick={handleCurrentMood} />
+        </div>
       </ProfileInfoDiv>
       <SearchBox>
         <SearchContainer>
@@ -185,6 +221,7 @@ function ContactListComponent(props) {
           userData={userData}
           setChat={props.setChat}
           userInfo={userInfo}
+          mood={currentMood}
         />
       ))}
     </Container>
