@@ -38,6 +38,11 @@ function App(props) {
   const { userInfo } = props;
   const [selectedChat, setChat] = useState();
   const [refreshContactList, toggleRefreshContactList] = useState(false);
+  const [currentMood,setCurrentMood] = useState("")
+
+  const handleCurrentmood=(mood)=>{
+    setCurrentMood(mood)
+  }
 
   return (
     <Container>
@@ -45,11 +50,13 @@ function App(props) {
         setChat={setChat}
         userInfo={userInfo}
         refreshContactList={refreshContactList}
+        handleCurrentmood={handleCurrentmood}
       />
       {selectedChat ? (
         <ConversationComponent
           selectedChat={selectedChat}
           userInfo={userInfo}
+          currentMood={currentMood}
           refreshContactList={() =>
             toggleRefreshContactList(!refreshContactList)
           }
