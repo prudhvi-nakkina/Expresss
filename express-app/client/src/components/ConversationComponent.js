@@ -52,7 +52,6 @@ const MessageContainer = styled.div`
   flex-direction: column;
   height: 100%;
   overflow-y: auto;
- 
 `;
 const MessageDiv = styled.div`
   display: flex;
