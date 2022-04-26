@@ -4,12 +4,16 @@ const userSchema = new mongoose.Schema({
     name: { type: String, default: '' },
     email: { type: String, default: '' },
     profilePic: { type: String, default: '' },
+    mood: {type: String, default:''},
     addedOn: { type: Number, default: Date.now() }
 })
 
 userSchema.method({
     saveData: async function () {
         return this.save()
+    },
+    findOneAndUpdate: async function (_id,body) {
+        return this.findOneAndUpdate(_id,body)
     }
 })
 userSchema.static({
