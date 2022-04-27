@@ -1,5 +1,7 @@
 import Cookies from "universal-cookie";
 
+// cookie manager for managing userinfo
+
 const cookies = new Cookies();
 
 const setUserInfo = (userInfo) => {

@@ -4,6 +4,8 @@
 import * as Controller from "../app/controllers";
 import * as Validation from "../utility/validator";
 
+// defined api routes for calls
+
 module.exports = (app) => {
     app.get('/', (req, res) => res.send(`API running fine`));
 

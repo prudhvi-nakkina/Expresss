@@ -1,5 +1,7 @@
 import axios from "axios";
 
+// using axios for api calls to backend
+
 const API_BASE_URL = "http://localhost:3001";
 
 const createUser = async (userData) => {

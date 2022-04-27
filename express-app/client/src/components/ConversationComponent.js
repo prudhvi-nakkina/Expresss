@@ -5,55 +5,7 @@ import Picker from "emoji-picker-react";
 import httpManager from "../managers/httpManager";
 import "./../dist/main.css";
 
-// const Container = styled.div`
-//   display: flex;
-//   flex-direction: column;
-//   flex: 3;
-//   height: 100%;
-//   width: 100%;
-//   background: #f6f7f8;
-// `;
 
-// const ProfileHeader = styled.div`
-//   display: flex;
-//   flex-direction: row;
-//   background: #ededed;
-//   padding: 10px;
-//   align-items: center;
-// `;
-
-// const ProfileInfo = styled.div`
-//   display: flex;
-//   flex-direction: row;
-//   background: #ededed;
-//   align-items: center;
-//   gap: 10px;
-// `;
-
-// const ProfileImage = styled.img`
-//   width: 32px;
-//   height: 32px;
-//   border-radius: 50%;
-// `;
-// const ContactName = styled.span`
-//   font-size: 16px;
-//   color: black;
-// `;
-
-// const ChatBox = styled.div`
-//   display: flex;
-//   flex-direction: row;
-//   background: #f0f0f0;
-//   padding: 10px;
-//   align-items: center;
-//   bottom: 0;
-// `;
-// const MessageContainer = styled.div`
-//   display: flex;
-//   flex-direction: column;
-//   height: 100%;
-//   overflow-y: auto;
-// `;
 const MessageDiv = styled.div`
   display: flex;
   justify-content: ${(props) => (props.isYours ? "flex-end" : "flex-start")};
@@ -67,18 +19,15 @@ const Message = styled.div`
   color: #303030;
   font-size: 14px;
 `;
-// const EmojiImage = styled.img`
-//   width: 28px;
-//   height: 28px;
-//   border-radius: 50%;
-//   opacity: 0.4;
-//   cursor: pointer;
-// `;
+
+// conversation panel for texting other users
 function ConversationComponent(props) {
   const { selectedChat, userInfo, refreshContactList, currentMood } = props;
   const [text, setText] = useState("");
   const [pickerVisible, togglePicker] = useState(false);
   const [messageList, setMessageList] = useState([]);
+
+  // themes based on mood
   const colorMoodMapper = {
     happy: "/resources/happy.jpg",
     sad: "/resources/sad.png",
@@ -90,6 +39,7 @@ function ConversationComponent(props) {
     setMessageList(selectedChat.channelData.messages);
   }, [selectedChat]);
 
+  // make api calls to send message on press of enter button
   const onEnterPress = async (event) => {
     let channelId = selectedChat.channelData._id;
     if (event.key === "Enter") {
@@ -112,6 +62,7 @@ function ConversationComponent(props) {
         channelId = channelResponse.data.responseData._id;
       }
       refreshContactList();
+      // setting messages for user
       const messages = [...messageList];
       const msgReqData = {
         text,

@@ -1,5 +1,6 @@
 import React from 'react';
 
+// mood picker component
 const Emoji = props => {
     const { type,isSelected,handleOnClick }=props
     const mapLabelEmoji = {
