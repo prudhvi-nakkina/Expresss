@@ -22,12 +22,12 @@ import "./../dist/main.css";
 //   padding: 10px;
 // `;
 
-const SearchBox = styled.div`
-  display: flex;
-  flex-direction: row;
-  background: #f6f6f6;
-  padding: 10px;
-`;
+// const SearchBox = styled.div`
+//   display: flex;
+//   flex-direction: row;
+//   background: #f6f6f6;
+//   padding: 10px;
+// `;
 export const SearchContainer = styled.div`
   display: flex;
   flex-direction: row;
@@ -37,10 +37,10 @@ export const SearchContainer = styled.div`
   padding: 5px 10px;
   gap: 10px;
 `;
-const SearchIcon = styled.img`
-  width: 28px;
-  height: 28px;
-`;
+// const SearchIcon = styled.img`
+//   width: 28px;
+//   height: 28px;
+// `;
 export const SearchInput = styled.input`
   width: 100%;
   outline: none;
@@ -48,24 +48,25 @@ export const SearchInput = styled.input`
   font-size: 15px;
 `;
 
-const ContactItem = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  width: 100%;
-  border-bottom: 1px solid #f2f2f2;
-  cursor: pointer;
+// const ContactItem = styled.div`
+//   display: flex;
+//   flex-direction: row;
+//   align-items: center;
+//   width: 100%;
+//   border-bottom: 1px solid #f2f2f2;
+//   cursor: pointer;
 
-  :hover {
-    background: #ebebeb;
-  }
-`;
-const ContactInfo = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  margin: 0 12px;
-`;
+//   :hover {
+//     background: #ebebeb;
+//   }
+// `;
+
+// const ContactInfo = styled.div`
+//   display: flex;
+//   flex-direction: column;
+//   width: 100%;
+//   margin: 0 12px;
+// `;
 
 const ContactName = styled.span`
   width: 100%;
@@ -127,20 +128,21 @@ const ContactComponent = (props) => {
       ? userData.messages[userData.messages.length - 1]
       : {};
   return (
-    <ContactItem
+    <div
+      className="ContactItem"
       style={{ background: `${colorMoodMapper[mood]}` }}
       onClick={() => setChat({ channelData: userData, otherUser })}
     >
       <ProfileIcon src={otherUser?.profilePic} />
-      <ContactInfo>
+      <div className="ContactInfo">
         <ContactName>{otherUser?.name}</ContactName>
         <MessageText>{lastMessage?.text}</MessageText>
-      </ContactInfo>
+      </div>
       <MessageTime>
         {" "}
         {lastMessage && new Date(lastMessage?.addedOn).getUTCDate()}
       </MessageTime>
-    </ContactItem>
+    </div>
   );
 };
 
@@ -234,7 +236,7 @@ function ContactListComponent(props) {
       </div>
       <div className="SearchBox">
         <SearchContainer>
-          <SearchIcon src={"/resources/search-icon.svg"} />
+          <img className="SearchIcon" src={"/resources/search-icon.svg"} />
           <SearchInput
             placeholder="Search or start new chat"
             value={searchString}

@@ -19,3 +19,25 @@
     background: #f6f6f6;
     padding: 10px;
 }
+.SearchIcon {
+    width: 28px;
+height: 28px;
+}
+
+.ContactItem{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    border-bottom: 1px solid #f2f2f2;
+    cursor: pointer;
+}
+.ContactItem:hover{
+    background: #ebebeb;
+}
+.ContactInfo{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin: 0 12px;
+}
