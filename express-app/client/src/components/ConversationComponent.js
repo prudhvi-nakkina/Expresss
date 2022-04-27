@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { SearchContainer, SearchInput } from "./ContactListComponent";
 import Picker from "emoji-picker-react";
 import httpManager from "../managers/httpManager";
+import "./../dist/main.css";
 
 // const Container = styled.div`
 //   display: flex;

@@ -236,14 +236,15 @@ function ContactListComponent(props) {
         </div>
       </div>
       <div className="SearchBox">
-        <SearchContainer>
+        <div className="SearchContainer">
           <img className="SearchIcon" src={"/resources/search-icon.svg"} />
-          <SearchInput
+          <input
+            className="SearchInput"
             placeholder="Search or start new chat"
             value={searchString}
             onChange={(e) => onSearchTextChanged(e.target.value)}
           />
-        </SearchContainer>
+        </div>
       </div>
       {searchResult && (
         <div className="SearchResults">
