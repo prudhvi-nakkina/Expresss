@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const DB_CONNECTION_URL = `mongodb+srv://expressp:expresso@cluster0.wkeqy.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`;
+const DB_CONNECTION_URL = `mongodb+srv://expresso:expresso@cluster0.wkeqy.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`;
 
 const connectDB = () => {
   console.log("DB trying to connect on " + new Date());
