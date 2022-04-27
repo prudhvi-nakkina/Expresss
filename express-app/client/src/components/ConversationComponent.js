@@ -39,20 +39,20 @@ import httpManager from "../managers/httpManager";
 //   color: black;
 // `;
 
-const ChatBox = styled.div`
-  display: flex;
-  flex-direction: row;
-  background: #f0f0f0;
-  padding: 10px;
-  align-items: center;
-  bottom: 0;
-`;
-const MessageContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  overflow-y: auto;
-`;
+// const ChatBox = styled.div`
+//   display: flex;
+//   flex-direction: row;
+//   background: #f0f0f0;
+//   padding: 10px;
+//   align-items: center;
+//   bottom: 0;
+// `;
+// const MessageContainer = styled.div`
+//   display: flex;
+//   flex-direction: column;
+//   height: 100%;
+//   overflow-y: auto;
+// `;
 const MessageDiv = styled.div`
   display: flex;
   justify-content: ${(props) => (props.isYours ? "flex-end" : "flex-start")};
@@ -66,13 +66,13 @@ const Message = styled.div`
   color: #303030;
   font-size: 14px;
 `;
-const EmojiImage = styled.img`
-  width: 28px;
-  height: 28px;
-  border-radius: 50%;
-  opacity: 0.4;
-  cursor: pointer;
-`;
+// const EmojiImage = styled.img`
+//   width: 28px;
+//   height: 28px;
+//   border-radius: 50%;
+//   opacity: 0.4;
+//   cursor: pointer;
+// `;
 function ConversationComponent(props) {
   const { selectedChat, userInfo, refreshContactList, currentMood } = props;
   const [text, setText] = useState("");
@@ -137,7 +137,8 @@ function ConversationComponent(props) {
           <span className="ContactName">{selectedChat.otherUser.name}</span>
         </div>
       </div>
-      <MessageContainer
+      <div
+        className="MessageContainer"
         style={{ backgroundImage: `url(${colorMoodMapper[currentMood]})` }}
       >
         {messageList?.map((messageData) => (
@@ -147,9 +148,9 @@ function ConversationComponent(props) {
             </Message>
           </MessageDiv>
         ))}
-      </MessageContainer>
+      </div>
 
-      <ChatBox>
+      <div className="ChatBox">
         <SearchContainer>
           {pickerVisible && (
             <Picker
@@ -160,7 +161,8 @@ function ConversationComponent(props) {
               }}
             />
           )}
-          <EmojiImage
+          <img
+            className="EmojiImage"
             src={"/resources/data.svg"}
             onClick={() => togglePicker((pickerVisible) => !pickerVisible)}
           />
@@ -171,7 +173,7 @@ function ConversationComponent(props) {
             onChange={(e) => setText(e.target.value)}
           />
         </SearchContainer>
-      </ChatBox>
+      </div>
     </div>
   );
 }

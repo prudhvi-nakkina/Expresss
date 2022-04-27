@@ -112,3 +112,24 @@ height: 28px;
     font-size: 16px;
     color: black;
 }
+.ChatBox{
+    display: flex;
+    flex-direction: row;
+    background: #f0f0f0;
+    padding: 10px;
+    align-items: center;
+    bottom: 0;
+}
+.MessageContainer{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow-y: auto;
+}
+.EmojiImage{
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    opacity: 0.4;
+    cursor: pointer;
+}
