@@ -63,7 +63,7 @@ function App(props) {
         />
       ) : (
         <Placeholder>
-          <ChatPlaceholder src="/whatsapp-clone/welcome-placeholder.jpeg" />
+          <ChatPlaceholder src="/resources/welcome-placeholder.jpeg" />
           <span>Search for your friends using email</span>
           Expresso loads your data from a Remote mongoDB
         </Placeholder>

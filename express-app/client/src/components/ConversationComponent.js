@@ -80,10 +80,10 @@ function ConversationComponent(props) {
   const [pickerVisible, togglePicker] = useState(false);
   const [messageList, setMessageList] = useState([]);
   const colorMoodMapper={
-    happy:"#ffd7b5 ",
-    sad: "#fcf3d4",
-    angry:"#c5e1a5",
-    sleepy:"#CAE9F5"
+    happy:"/resources/happy.jpg",
+    sad: "/resources/balance.jpg",
+    angry:"resources/angry.jpeg",
+    sleepy:"/resources/sleepy.png"
   }
 
   useEffect(() => {
@@ -135,7 +135,7 @@ function ConversationComponent(props) {
           <ContactName>{selectedChat.otherUser.name}</ContactName>
         </ProfileInfo>
       </ProfileHeader>
-      <MessageContainer style={{background: `${colorMoodMapper[currentMood]}`}}>
+      <MessageContainer style={{backgroundImage: `url(${colorMoodMapper[currentMood]})`}}>
         {messageList?.map((messageData) => (
           <MessageDiv isYours={messageData.senderEmail === userInfo.email}>
             <Message isYours={messageData.senderEmail === userInfo.email}>
@@ -157,7 +157,7 @@ function ConversationComponent(props) {
             />
           )}
           <EmojiImage
-            src={"/whatsapp-clone/data.svg"}
+            src={"/resources/data.svg"}
             onClick={() => togglePicker((pickerVisible) => !pickerVisible)}
           />
           <SearchInput
