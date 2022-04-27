@@ -1,21 +1,16 @@
-import React from 'react'
+import React from 'react';
+import cookieManager from '../managers/cookieManager';
 
 
+let deleteCookies = () => {
+    console.log("Triggering logout");
+    cookieManager.setUserInfo(null);
+    // Makes sure the page reloads. Changes are only visible after you refresh.
+    window.location.reload(true);
+}
 function LogoutComponent() {
-    const clearCache = () => {
-        if ('caches' in window) {
-            caches.keys().then((names) => {
-                // Delete all the cache files
-                names.forEach(name => {
-                    caches.delete(name);
-                })
-            });
-            // Makes sure the page reloads. Changes are only visible after you refresh.
-            window.location.reload(true);
-        }
-    }
     return (
-        <div onClick={clearCache()}>LogoutComponent</div>
+        <div onClick={deleteCookies}>LogoutComponent</div>
     )
 }
 
