@@ -39,7 +39,7 @@ function App(props) {
   const { userInfo } = props;
   const [selectedChat, setChat] = useState();
   const [refreshContactList, toggleRefreshContactList] = useState(false);
-  const [currentMood,setCurrentMood] = useState("")
+  const [currentMood,setCurrentMood] = useState(userInfo.mood)
 
   const handleCurrentmood=(mood)=>{
     setCurrentMood(mood)
@@ -64,7 +64,7 @@ function App(props) {
         />
       ) : (
         <Placeholder>
-          <ChatPlaceholder src="/resources/welcome-placeholder.jpeg" />
+          <ChatPlaceholder src="/resources/logo.jpg" />
           <span>Search for your friends using email</span>
           Expresso loads your data from a Remote mongoDB
           <NewsWidgetComponent/>
