@@ -147,5 +147,14 @@ height: 28px;
     cursor: pointer;
 }
 .svgstyled{
-    margin:30px;
+    margin-top:5px;
+
+    .daysPanel-d5-0-2-40{
+        display: none;
+    }
+}
+
+.lists {
+    overflow: scroll;
+    height: 335px;
 }
