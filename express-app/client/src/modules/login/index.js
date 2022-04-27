@@ -4,6 +4,9 @@ import { GoogleLogin } from "react-google-login";
 import App from "../../App";
 import cookieManager from "../../managers/cookieManager";
 import httpManager from "../../managers/httpManager";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import AboutComponent from "../../components/extras/AboutComponent";
+
 
 const Container = styled.div`
   display: flex;
@@ -80,33 +83,48 @@ const LoginComponent = () => {
 
   return (
     <>
-      {userInfo ? (
-        <App userInfo={userInfo} />
-      ) : (
-        <Container>
-          <Header>Expresso!</Header>
-          <CardView>
-            <Instructions>
-              <Heading>To use Expresso on your computer:</Heading>
-              <ol>
-                <li>You need to Signin using your Google Account.</li>
-                <li>You can anytime logout from the Web.</li>
-                <li>
-                  Click on Signin button to continue using Expresso.
-                </li>
-              </ol>
-              <GoogleLogin
-                clientId="412954107899-68euuaorrd8rvs138sa74g0fhudesc2f.apps.googleusercontent.com"
-                buttonText="Sign In with Google"
-                cookiePolicy={"single_host_origin"}
-                onSuccess={responseGoogle}
-                onFailure={responseGoogle}
-              />
-            </Instructions>
-            <QRCode src="resources/logo.jpg" />
-          </CardView>
-        </Container>
-      )}
+      {
+        // We show two buttons on home page
+        // One is about the context of the application
+        // The second is for the demo
+      }
+      <BrowserRouter>
+        <Routes>
+          <Route index element={userInfo ? (
+            <App userInfo={userInfo} />
+          ) : (
+            <Container>
+              <Header>
+                <h1>
+                Expresso!
+                </h1>
+              </Header>
+              <CardView>
+                <Instructions>
+                  <Heading>To use Expresso, </Heading>
+                  <ol>
+                    <li>You need to Signin using your Google Account.</li>
+                    <li>You can anytime logout from the Web.</li>
+                    <li>
+                      Click on Signin button to continue using Expresso.
+                    </li>
+                  </ol>
+                  <GoogleLogin
+                    clientId="412954107899-68euuaorrd8rvs138sa74g0fhudesc2f.apps.googleusercontent.com"
+                    buttonText="Sign In with Google"
+                    cookiePolicy={"single_host_origin"}
+                    onSuccess={responseGoogle}
+                    onFailure={responseGoogle}
+                  />
+                </Instructions>
+                <QRCode src="resources/logo.jpg" />
+              </CardView>
+            </Container>
+          )} />
+          <Route path="about" element={<AboutComponent />} />
+          <Route path="*" element={<AboutComponent/>} />
+        </Routes>
+      </BrowserRouter>
     </>
   );
 };
