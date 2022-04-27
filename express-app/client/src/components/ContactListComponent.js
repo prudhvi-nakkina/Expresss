@@ -5,6 +5,7 @@ import utility from "../utility";
 import Emoji from "./Emoji";
 import "./../dist/main.css";
 import NewsWidgetComponent from "./extras/NewsWidgetComponent";
+import LogoutComponent from "./LogoutComponent";
 
 const ProfileImage = styled.img`
   width: 32px;
@@ -185,6 +186,9 @@ function ContactListComponent(props) {
       </div>
       <div className="svgstyled">
         <NewsWidgetComponent />
+      </div>
+      <div>
+        <LogoutComponent/>
       </div>
     </div>
   );
