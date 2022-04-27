@@ -186,6 +186,14 @@ function ContactListComponent(props) {
     if (userData.data?.success) setSearchResult(userData.data.responseData);
   };
 
+  useEffect(() => {
+    const interval = setInterval(() => {
+      refreshContacts();
+    }, 5000);
+
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <Container>
       <ProfileInfoDiv style={{background: `${colorMoodHeaderMapper[currentMood]}`}}>
