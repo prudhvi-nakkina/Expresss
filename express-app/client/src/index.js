@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import "./../dist/main.css";
+import "./dist/main.css";
 import App from "./App";
 import LoginComponent from "./modules/login";
 
