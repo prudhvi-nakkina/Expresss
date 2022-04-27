@@ -24,7 +24,6 @@ const ProfileIcon = styled(ProfileImage)`
 
 // each contact section of other users
 const ContactComponent = (props) => {
-
   const colorMoodMapper = {
     happy: "rgb(246 187 122 / 80%)",
     sad: "rgb(252 236 107 / 56%)",
@@ -51,6 +50,7 @@ const ContactComponent = (props) => {
       onClick={() => setChat({ channelData: userData, otherUser })}
     >
       <ProfileIcon src={otherUser?.profilePic} />
+
       {/* ProfileIcon profileimg */}
       <div className="ContactInfo">
         <span className="ContactName">{otherUser?.name}</span>
@@ -79,7 +79,6 @@ function ContactListComponent(props) {
   const [searchResult, setSearchResult] = useState("");
   const [contactList, setContactList] = useState([]);
   const [currentMood, setCurrentMood] = useState("");
-
 
   const handleCurrentMood = (mood) => {
     updateUserMood(mood);
@@ -134,6 +133,7 @@ function ContactListComponent(props) {
             src={userInfo.imageUrl || "/resources/profile/elon.jpeg"}
           />
         </div>
+
         <div>
           <Emoji
             type="happy"
@@ -174,18 +174,18 @@ function ContactListComponent(props) {
         </div>
       )}
       <div className="lists">
-      {contactList.map((userData) => (
-        <ContactComponent
-          userData={userData}
-          setChat={props.setChat}
-          userInfo={userInfo}
-          mood={currentMood}
-        />
-      ))}
+        {contactList.map((userData) => (
+          <ContactComponent
+            userData={userData}
+            setChat={props.setChat}
+            userInfo={userInfo}
+            mood={currentMood}
+          />
+        ))}
       </div>
       <div className="svgstyled">
-       <NewsWidgetComponent/>
-       </div>
+        <NewsWidgetComponent />
+      </div>
     </div>
   );
 }

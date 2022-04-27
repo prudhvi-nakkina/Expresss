@@ -5,7 +5,6 @@ import Picker from "emoji-picker-react";
 import httpManager from "../managers/httpManager";
 import "./../dist/main.css";
 
-
 const MessageDiv = styled.div`
   display: flex;
   justify-content: ${(props) => (props.isYours ? "flex-end" : "flex-start")};
@@ -80,6 +79,7 @@ function ConversationComponent(props) {
   };
   return (
     <div className="Container">
+      {/* <Clock></Clock> */}
       <div className="ProfileHeader">
         <div className="ProfileInfo">
           <img
@@ -101,7 +101,6 @@ function ConversationComponent(props) {
           </MessageDiv>
         ))}
       </div>
-
       <div className="ChatBox">
         <div className="SearchContainer">
           {pickerVisible && (
