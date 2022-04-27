@@ -88,25 +88,25 @@ export const SearchInput = styled.input`
 //   white-space: nowrap;
 // `;
 
-const ProfileImage = styled.img`
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  position: "relative";
-`;
-const ProfileIcon = styled(ProfileImage)`
-  width: 38px;
-  height: 38px;
-  border-radius: 50%;
-  margin-left: 12px;
-  margin-top: 15px;
-  margin-bottom: 15px;
-  object-fit: cover;
-`;
-const SearchResults = styled.div`
-  width: 100%;
-  height: 100px;
-`;
+// const ProfileImage = styled.img`
+//   width: 32px;
+//   height: 32px;
+//   border-radius: 50%;
+//   position: "relative";
+// `;
+// const ProfileIcon = styled(ProfileImage)`
+//   width: 38px;
+//   height: 38px;
+//   border-radius: 50%;
+//   margin-left: 12px;
+//   margin-top: 15px;
+//   margin-bottom: 15px;
+//   object-fit: cover;
+// `;
+// const SearchResults = styled.div`
+//   width: 100%;
+//   height: 100px;
+// `;
 
 const ContactComponent = (props) => {
   const colorMoodMapper = {
@@ -133,7 +133,7 @@ const ContactComponent = (props) => {
       style={{ background: `${colorMoodMapper[mood]}` }}
       onClick={() => setChat({ channelData: userData, otherUser })}
     >
-      <ProfileIcon src={otherUser?.profilePic} />
+      <img className="" src={otherUser?.profilePic} /> // profileimage icon
       <div className="ContactInfo">
         <span className="ContactName">{otherUser?.name}</span>
         <span className="MessageText">{lastMessage?.text}</span>
@@ -246,9 +246,9 @@ function ContactListComponent(props) {
         </SearchContainer>
       </div>
       {searchResult && (
-        <SearchResults>
+        <div className="SearchResults">
           <ContactComponent userData={searchResult} setChat={props.setChat} />
-        </SearchResults>
+        </div>
       )}
       {contactList.map((userData) => (
         <ContactComponent
