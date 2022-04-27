@@ -34,10 +34,10 @@ import httpManager from "../managers/httpManager";
 //   height: 32px;
 //   border-radius: 50%;
 // `;
-const ContactName = styled.span`
-  font-size: 16px;
-  color: black;
-`;
+// const ContactName = styled.span`
+//   font-size: 16px;
+//   color: black;
+// `;
 
 const ChatBox = styled.div`
   display: flex;
@@ -134,7 +134,7 @@ function ConversationComponent(props) {
             className="ProfileImage"
             src={selectedChat.otherUser.profilePic}
           />
-          <ContactName>{selectedChat.otherUser.name}</ContactName>
+          <span className="ContactName">{selectedChat.otherUser.name}</span>
         </div>
       </div>
       <MessageContainer
