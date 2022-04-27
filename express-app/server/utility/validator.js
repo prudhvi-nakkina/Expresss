@@ -1,6 +1,7 @@
 import { sendError } from "./index";
 import * as yup from "yup";
 
+// validations for users and channels
 module.exports = {
   validateCreateUser: async (req, res, next) => {
     const schema = yup.object().shape({

@@ -34,6 +34,7 @@ const Placeholder = styled.div`
   }
 `;
 
+// rendering contactlist and conversation components in app component
 function App(props) {
   const { userInfo } = props;
   const [selectedChat, setChat] = useState();

@@ -1,7 +1,9 @@
 import React from 'react';
 import ReactWeather, { useOpenWeather } from 'react-open-weather';
 
+// using third party weather api
 const Weatherwidget  = () => {
+  // co-ordinates for boston
   const { data, isLoading, errorMessage } = useOpenWeather({
     key: '62b0e6cabe88c9761464e90cf08b19f9',
     lat: '48.137154',

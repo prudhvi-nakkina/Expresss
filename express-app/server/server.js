@@ -2,6 +2,7 @@ import APP from "express";
 import connectDB from "./dbConnection";
 import routes from "./routes";
 
+// starting backend server at port 3001
 const app = new APP();
 require("./config")(app);
 

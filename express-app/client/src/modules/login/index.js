@@ -59,6 +59,7 @@ const QRCode = styled.img`
   background-color: white;
 `;
 
+// google login component for fetching user info
 const LoginComponent = () => {
   const [userInfo, setUserInfo] = useState();
 

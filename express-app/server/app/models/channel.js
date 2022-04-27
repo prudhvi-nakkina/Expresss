@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 
+// schema for messaging channel
 const channelSchema = new mongoose.Schema({
   channelUsers: [
     {

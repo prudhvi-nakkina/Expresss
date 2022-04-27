@@ -1,5 +1,7 @@
 import mongoose from "mongoose";
 
+// connecting to cloud database using mongo atlas
+
 const DB_CONNECTION_URL = `mongodb+srv://expresso:expresso@cluster0.wkeqy.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`;
 
 const connectDB = () => {
