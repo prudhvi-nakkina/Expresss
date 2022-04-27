@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import { SearchContainer, SearchInput } from "./ContactListComponent";
+// import { SearchContainer, SearchInput } from "./ContactListComponent";
 import Picker from "emoji-picker-react";
 import httpManager from "../managers/httpManager";
 import "./../dist/main.css";
@@ -152,7 +152,7 @@ function ConversationComponent(props) {
       </div>
 
       <div className="ChatBox">
-        <SearchContainer>
+        <div className="SearchContainer">
           {pickerVisible && (
             <Picker
               pickerStyle={{ position: "absolute", bottom: "60px" }}
@@ -167,13 +167,14 @@ function ConversationComponent(props) {
             src={"/resources/data.svg"}
             onClick={() => togglePicker((pickerVisible) => !pickerVisible)}
           />
-          <SearchInput
+          <input
+            className="SearchInput"
             placeholder="Type a message"
             value={text}
             onKeyDown={onEnterPress}
             onChange={(e) => setText(e.target.value)}
           />
-        </SearchContainer>
+        </div>
       </div>
     </div>
   );

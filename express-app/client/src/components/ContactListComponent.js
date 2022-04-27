@@ -28,25 +28,25 @@ import "./../dist/main.css";
 //   background: #f6f6f6;
 //   padding: 10px;
 // `;
-export const SearchContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-  background: white;
-  border-radius: 16px;
-  width: 100%;
-  padding: 5px 10px;
-  gap: 10px;
-`;
+// export const SearchContainer = styled.div`
+//   display: flex;
+//   flex-direction: row;
+//   background: white;
+//   border-radius: 16px;
+//   width: 100%;
+//   padding: 5px 10px;
+//   gap: 10px;
+// `;
 // const SearchIcon = styled.img`
 //   width: 28px;
 //   height: 28px;
 // `;
-export const SearchInput = styled.input`
-  width: 100%;
-  outline: none;
-  border: none;
-  font-size: 15px;
-`;
+// export const SearchInput = styled.input`
+//   width: 100%;
+//   outline: none;
+//   border: none;
+//   font-size: 15px;
+// `;
 
 // const ContactItem = styled.div`
 //   display: flex;
