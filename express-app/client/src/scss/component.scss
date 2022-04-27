@@ -77,3 +77,34 @@ height: 28px;
     width: 100%;
     height: 100px;
 }
+
+
+
+// conversationComponent
+.Container{
+    display: flex;
+    flex-direction: column;
+    flex: 3;
+    height: 100%;
+    width: 100%;
+    background: #f6f7f8;
+}
+.ProfileHeader{
+    display: flex;
+    flex-direction: row;
+    background: #ededed;
+    padding: 10px;
+    align-items: center;
+}
+.ProfileInfo{
+    display: flex;
+    flex-direction: row;
+    background: #ededed;
+    align-items: center;
+    gap: 10px;
+}
+.ProfileImage{
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+}

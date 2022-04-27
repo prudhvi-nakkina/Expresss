@@ -4,36 +4,36 @@ import { SearchContainer, SearchInput } from "./ContactListComponent";
 import Picker from "emoji-picker-react";
 import httpManager from "../managers/httpManager";
 
-const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  flex: 3;
-  height: 100%;
-  width: 100%;
-  background: #f6f7f8;
-`;
+// const Container = styled.div`
+//   display: flex;
+//   flex-direction: column;
+//   flex: 3;
+//   height: 100%;
+//   width: 100%;
+//   background: #f6f7f8;
+// `;
 
-const ProfileHeader = styled.div`
-  display: flex;
-  flex-direction: row;
-  background: #ededed;
-  padding: 10px;
-  align-items: center;
-`;
+// const ProfileHeader = styled.div`
+//   display: flex;
+//   flex-direction: row;
+//   background: #ededed;
+//   padding: 10px;
+//   align-items: center;
+// `;
 
-const ProfileInfo = styled.div`
-  display: flex;
-  flex-direction: row;
-  background: #ededed;
-  align-items: center;
-  gap: 10px;
-`;
+// const ProfileInfo = styled.div`
+//   display: flex;
+//   flex-direction: row;
+//   background: #ededed;
+//   align-items: center;
+//   gap: 10px;
+// `;
 
-const ProfileImage = styled.img`
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-`;
+// const ProfileImage = styled.img`
+//   width: 32px;
+//   height: 32px;
+//   border-radius: 50%;
+// `;
 const ContactName = styled.span`
   font-size: 16px;
   color: black;
@@ -74,17 +74,16 @@ const EmojiImage = styled.img`
   cursor: pointer;
 `;
 function ConversationComponent(props) {
-
-  const { selectedChat, userInfo, refreshContactList,currentMood } = props;
+  const { selectedChat, userInfo, refreshContactList, currentMood } = props;
   const [text, setText] = useState("");
   const [pickerVisible, togglePicker] = useState(false);
   const [messageList, setMessageList] = useState([]);
-  const colorMoodMapper={
-    happy:"/resources/happy.jpg",
+  const colorMoodMapper = {
+    happy: "/resources/happy.jpg",
     sad: "/resources/balance.jpg",
-    angry:"resources/angry.jpeg",
-    sleepy:"/resources/sleepy.png"
-  }
+    angry: "resources/angry.jpeg",
+    sleepy: "/resources/sleepy.png",
+  };
 
   useEffect(() => {
     setMessageList(selectedChat.channelData.messages);
@@ -128,14 +127,19 @@ function ConversationComponent(props) {
     }
   };
   return (
-    <Container>
-      <ProfileHeader>
-        <ProfileInfo>
-          <ProfileImage src={selectedChat.otherUser.profilePic} />
+    <div className="Container">
+      <div className="ProfileHeader">
+        <div className="ProfileInfo">
+          <img
+            className="ProfileImage"
+            src={selectedChat.otherUser.profilePic}
+          />
           <ContactName>{selectedChat.otherUser.name}</ContactName>
-        </ProfileInfo>
-      </ProfileHeader>
-      <MessageContainer style={{backgroundImage: `url(${colorMoodMapper[currentMood]})`}}>
+        </div>
+      </div>
+      <MessageContainer
+        style={{ backgroundImage: `url(${colorMoodMapper[currentMood]})` }}
+      >
         {messageList?.map((messageData) => (
           <MessageDiv isYours={messageData.senderEmail === userInfo.email}>
             <Message isYours={messageData.senderEmail === userInfo.email}>
@@ -168,7 +172,7 @@ function ConversationComponent(props) {
           />
         </SearchContainer>
       </ChatBox>
-    </Container>
+    </div>
   );
 }
 
