@@ -1,58 +1,59 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import { SearchContainer, SearchInput } from "./ContactListComponent";
+// import { SearchContainer, SearchInput } from "./ContactListComponent";
 import Picker from "emoji-picker-react";
 import httpManager from "../managers/httpManager";
+import "./../dist/main.css";
 
-const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  flex: 3;
-  height: 100%;
-  width: 100%;
-  background: #f6f7f8;
-`;
+// const Container = styled.div`
+//   display: flex;
+//   flex-direction: column;
+//   flex: 3;
+//   height: 100%;
+//   width: 100%;
+//   background: #f6f7f8;
+// `;
 
-const ProfileHeader = styled.div`
-  display: flex;
-  flex-direction: row;
-  background: #ededed;
-  padding: 10px;
-  align-items: center;
-`;
+// const ProfileHeader = styled.div`
+//   display: flex;
+//   flex-direction: row;
+//   background: #ededed;
+//   padding: 10px;
+//   align-items: center;
+// `;
 
-const ProfileInfo = styled.div`
-  display: flex;
-  flex-direction: row;
-  background: #ededed;
-  align-items: center;
-  gap: 10px;
-`;
+// const ProfileInfo = styled.div`
+//   display: flex;
+//   flex-direction: row;
+//   background: #ededed;
+//   align-items: center;
+//   gap: 10px;
+// `;
 
-const ProfileImage = styled.img`
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-`;
-const ContactName = styled.span`
-  font-size: 16px;
-  color: black;
-`;
+// const ProfileImage = styled.img`
+//   width: 32px;
+//   height: 32px;
+//   border-radius: 50%;
+// `;
+// const ContactName = styled.span`
+//   font-size: 16px;
+//   color: black;
+// `;
 
-const ChatBox = styled.div`
-  display: flex;
-  flex-direction: row;
-  background: #f0f0f0;
-  padding: 10px;
-  align-items: center;
-  bottom: 0;
-`;
-const MessageContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  overflow-y: auto;
-`;
+// const ChatBox = styled.div`
+//   display: flex;
+//   flex-direction: row;
+//   background: #f0f0f0;
+//   padding: 10px;
+//   align-items: center;
+//   bottom: 0;
+// `;
+// const MessageContainer = styled.div`
+//   display: flex;
+//   flex-direction: column;
+//   height: 100%;
+//   overflow-y: auto;
+// `;
 const MessageDiv = styled.div`
   display: flex;
   justify-content: ${(props) => (props.isYours ? "flex-end" : "flex-start")};
@@ -66,25 +67,24 @@ const Message = styled.div`
   color: #303030;
   font-size: 14px;
 `;
-const EmojiImage = styled.img`
-  width: 28px;
-  height: 28px;
-  border-radius: 50%;
-  opacity: 0.4;
-  cursor: pointer;
-`;
+// const EmojiImage = styled.img`
+//   width: 28px;
+//   height: 28px;
+//   border-radius: 50%;
+//   opacity: 0.4;
+//   cursor: pointer;
+// `;
 function ConversationComponent(props) {
-
-  const { selectedChat, userInfo, refreshContactList,currentMood } = props;
+  const { selectedChat, userInfo, refreshContactList, currentMood } = props;
   const [text, setText] = useState("");
   const [pickerVisible, togglePicker] = useState(false);
   const [messageList, setMessageList] = useState([]);
-  const colorMoodMapper={
-    happy:"/resources/happy.jpg",
+  const colorMoodMapper = {
+    happy: "/resources/happy.jpg",
     sad: "/resources/balance.jpg",
-    angry:"resources/angry.jpeg",
-    sleepy:"/resources/sleepy.png"
-  }
+    angry: "resources/angry.jpeg",
+    sleepy: "/resources/sleepy.png",
+  };
 
   useEffect(() => {
     setMessageList(selectedChat.channelData.messages);
@@ -128,14 +128,20 @@ function ConversationComponent(props) {
     }
   };
   return (
-    <Container>
-      <ProfileHeader>
-        <ProfileInfo>
-          <ProfileImage src={selectedChat.otherUser.profilePic} />
-          <ContactName>{selectedChat.otherUser.name}</ContactName>
-        </ProfileInfo>
-      </ProfileHeader>
-      <MessageContainer style={{backgroundImage: `url(${colorMoodMapper[currentMood]})`}}>
+    <div className="Container">
+      <div className="ProfileHeader">
+        <div className="ProfileInfo">
+          <img
+            className="ProfileImage"
+            src={selectedChat.otherUser.profilePic}
+          />
+          <span className="ContactName">{selectedChat.otherUser.name}</span>
+        </div>
+      </div>
+      <div
+        className="MessageContainer"
+        style={{ backgroundImage: `url(${colorMoodMapper[currentMood]})` }}
+      >
         {messageList?.map((messageData) => (
           <MessageDiv isYours={messageData.senderEmail === userInfo.email}>
             <Message isYours={messageData.senderEmail === userInfo.email}>
@@ -143,10 +149,10 @@ function ConversationComponent(props) {
             </Message>
           </MessageDiv>
         ))}
-      </MessageContainer>
+      </div>
 
-      <ChatBox>
-        <SearchContainer>
+      <div className="ChatBox">
+        <div className="SearchContainer">
           {pickerVisible && (
             <Picker
               pickerStyle={{ position: "absolute", bottom: "60px" }}
@@ -156,19 +162,21 @@ function ConversationComponent(props) {
               }}
             />
           )}
-          <EmojiImage
+          <img
+            className="EmojiImage"
             src={"/resources/data.svg"}
             onClick={() => togglePicker((pickerVisible) => !pickerVisible)}
           />
-          <SearchInput
+          <input
+            className="SearchInput"
             placeholder="Type a message"
             value={text}
             onKeyDown={onEnterPress}
             onChange={(e) => setText(e.target.value)}
           />
-        </SearchContainer>
-      </ChatBox>
-    </Container>
+        </div>
+      </div>
+    </div>
   );
 }
 
