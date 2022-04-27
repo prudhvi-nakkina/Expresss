@@ -102,4 +102,58 @@ code {
   height: 100px;
 }
 
+.Container {
+  display: flex;
+  flex-direction: column;
+  flex: 3;
+  height: 100%;
+  width: 100%;
+  background: #f6f7f8;
+}
+
+.ProfileHeader {
+  display: flex;
+  flex-direction: row;
+  background: #ededed;
+  padding: 10px;
+  align-items: center;
+}
+
+.ProfileInfo {
+  display: flex;
+  flex-direction: row;
+  background: #ededed;
+  align-items: center;
+  gap: 10px;
+}
+
+.ContactName {
+  font-size: 16px;
+  color: black;
+}
+
+.ChatBox {
+  display: flex;
+  flex-direction: row;
+  background: #f0f0f0;
+  padding: 10px;
+  align-items: center;
+  bottom: 0;
+}
+
+.MessageContainer {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow-y: auto;
+}
+
+.EmojiImage {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  opacity: 0.4;
+  cursor: pointer;
+}
+
 /*# sourceMappingURL=main.css.map */

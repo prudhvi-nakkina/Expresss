@@ -88,21 +88,21 @@ export const SearchInput = styled.input`
 //   white-space: nowrap;
 // `;
 
-// const ProfileImage = styled.img`
-//   width: 32px;
-//   height: 32px;
-//   border-radius: 50%;
-//   position: "relative";
-// `;
-// const ProfileIcon = styled(ProfileImage)`
-//   width: 38px;
-//   height: 38px;
-//   border-radius: 50%;
-//   margin-left: 12px;
-//   margin-top: 15px;
-//   margin-bottom: 15px;
-//   object-fit: cover;
-// `;
+const ProfileImage = styled.img`
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  position: "relative";
+`;
+const ProfileIcon = styled(ProfileImage)`
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  margin-left: 12px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  object-fit: cover;
+`;
 // const SearchResults = styled.div`
 //   width: 100%;
 //   height: 100px;
@@ -133,7 +133,8 @@ const ContactComponent = (props) => {
       style={{ background: `${colorMoodMapper[mood]}` }}
       onClick={() => setChat({ channelData: userData, otherUser })}
     >
-      <img className="" src={otherUser?.profilePic} /> // profileimage icon
+      <ProfileIcon src={otherUser?.profilePic} />
+      {/* ProfileIcon profileimg */}
       <div className="ContactInfo">
         <span className="ContactName">{otherUser?.name}</span>
         <span className="MessageText">{lastMessage?.text}</span>
@@ -207,8 +208,7 @@ function ContactListComponent(props) {
         style={{ background: `${colorMoodHeaderMapper[currentMood]}` }}
       >
         <div>
-          <img
-            className="ProfileImage"
+          <ProfileImage
             src={userInfo.imageUrl || "/resources/profile/elon.jpeg"}
           />
         </div>
