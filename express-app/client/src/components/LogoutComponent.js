@@ -14,4 +14,4 @@ function LogoutComponent() {
     )
 }
 
-export default LogoutComponent
+export default LogoutComponent;
