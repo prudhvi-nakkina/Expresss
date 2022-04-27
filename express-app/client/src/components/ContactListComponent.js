@@ -14,13 +14,13 @@ import "./../dist/main.css";
 //   border-right: 1px solid #dadada;
 // `;
 
-const ProfileInfoDiv = styled.div`
-  display: flex;
-  flex-direction: row;
-  background: #ededed;
-  justify-content: space-between;
-  padding: 10px;
-`;
+// const ProfileInfoDiv = styled.div`
+//   display: flex;
+//   flex-direction: row;
+//   background: #ededed;
+//   justify-content: space-between;
+//   padding: 10px;
+// `;
 
 const SearchBox = styled.div`
   display: flex;
@@ -200,7 +200,8 @@ function ContactListComponent(props) {
 
   return (
     <div className="container">
-      <ProfileInfoDiv
+      <div
+        className="ProfileInfoDiv"
         style={{ background: `${colorMoodHeaderMapper[currentMood]}` }}
       >
         <div>
@@ -230,8 +231,8 @@ function ContactListComponent(props) {
             handleOnClick={handleCurrentMood}
           />
         </div>
-      </ProfileInfoDiv>
-      <SearchBox>
+      </div>
+      <div className="SearchBox">
         <SearchContainer>
           <SearchIcon src={"/resources/search-icon.svg"} />
           <SearchInput
@@ -240,7 +241,7 @@ function ContactListComponent(props) {
             onChange={(e) => onSearchTextChanged(e.target.value)}
           />
         </SearchContainer>
-      </SearchBox>
+      </div>
       {searchResult && (
         <SearchResults>
           <ContactComponent userData={searchResult} setChat={props.setChat} />
