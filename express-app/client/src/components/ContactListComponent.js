@@ -74,19 +74,19 @@ export const SearchInput = styled.input`
 //   color: black;
 // `;
 
-const MessageText = styled.span`
-  width: 100%;
-  font-size: 14px;
-  margin-top: 3px;
-  color: rgba(0, 0, 0, 0.8);
-`;
+// const MessageText = styled.span`
+//   width: 100%;
+//   font-size: 14px;
+//   margin-top: 3px;
+//   color: rgba(0, 0, 0, 0.8);
+// `;
 
-const MessageTime = styled.span`
-  font-size: 12px;
-  margin-right: 10px;
-  color: rgba(0, 0, 0, 0.45);
-  white-space: nowrap;
-`;
+// const MessageTime = styled.span`
+//   font-size: 12px;
+//   margin-right: 10px;
+//   color: rgba(0, 0, 0, 0.45);
+//   white-space: nowrap;
+// `;
 
 const ProfileImage = styled.img`
   width: 32px;
@@ -138,10 +138,10 @@ const ContactComponent = (props) => {
         <span className="ContactName">{otherUser?.name}</span>
         <span className="MessageText">{lastMessage?.text}</span>
       </div>
-      <MessageTime>
+      <span className="MessageTime">
         {" "}
         {lastMessage && new Date(lastMessage?.addedOn).getUTCDate()}
-      </MessageTime>
+      </span>
     </div>
   );
 };
@@ -207,7 +207,8 @@ function ContactListComponent(props) {
         style={{ background: `${colorMoodHeaderMapper[currentMood]}` }}
       >
         <div>
-          <ProfileImage
+          <img
+            className="ProfileImage"
             src={userInfo.imageUrl || "/resources/profile/elon.jpeg"}
           />
         </div>
