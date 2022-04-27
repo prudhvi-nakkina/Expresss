@@ -5,3 +5,7 @@
     -webkit-font-smoothing: $webkit1;
     -moz-osx-font-smoothing: $webkit1;
 }
+@mixin basic($b1, $b2) {
+    margin: $b1;
+    height: $b2;
+}
