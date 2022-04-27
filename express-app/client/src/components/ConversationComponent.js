@@ -80,8 +80,8 @@ function ConversationComponent(props) {
   const [pickerVisible, togglePicker] = useState(false);
   const [messageList, setMessageList] = useState([]);
   const colorMoodMapper={
-    happy:"#ffd7b5 ",
-    sad: "#fcf3d4",
+    happy:"rgb(246 187 122 / 80%)",
+    sad: "rgb(252 236 107 / 56%)",
     angry:"#c5e1a5",
     sleepy:"#CAE9F5"
   }
@@ -157,7 +157,7 @@ function ConversationComponent(props) {
             />
           )}
           <EmojiImage
-            src={"/whatsapp-clone/data.svg"}
+            src={"/resources/data.svg"}
             onClick={() => togglePicker((pickerVisible) => !pickerVisible)}
           />
           <SearchInput
