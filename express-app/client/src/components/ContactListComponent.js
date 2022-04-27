@@ -68,11 +68,11 @@ export const SearchInput = styled.input`
 //   margin: 0 12px;
 // `;
 
-const ContactName = styled.span`
-  width: 100%;
-  font-size: 16px;
-  color: black;
-`;
+// const ContactName = styled.span`
+//   width: 100%;
+//   font-size: 16px;
+//   color: black;
+// `;
 
 const MessageText = styled.span`
   width: 100%;
@@ -135,8 +135,8 @@ const ContactComponent = (props) => {
     >
       <ProfileIcon src={otherUser?.profilePic} />
       <div className="ContactInfo">
-        <ContactName>{otherUser?.name}</ContactName>
-        <MessageText>{lastMessage?.text}</MessageText>
+        <span className="ContactName">{otherUser?.name}</span>
+        <span className="MessageText">{lastMessage?.text}</span>
       </div>
       <MessageTime>
         {" "}
