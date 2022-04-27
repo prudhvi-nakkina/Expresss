@@ -9,3 +9,6 @@
     margin: $b1;
     height: $b2;
 }
+@mixin font-family1($fam) {
+    font-family: $fam;
+}
