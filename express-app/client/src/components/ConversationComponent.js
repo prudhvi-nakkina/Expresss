@@ -81,8 +81,8 @@ function ConversationComponent(props) {
   const [messageList, setMessageList] = useState([]);
   const colorMoodMapper = {
     happy: "/resources/happy.jpg",
-    sad: "/resources/balance.jpg",
-    angry: "resources/angry.jpeg",
+    sad: "/resources/sad.png",
+    angry: "resources/relaxx.jpg",
     sleepy: "/resources/sleepy.png",
   };
 
