@@ -108,8 +108,8 @@ const SearchResults = styled.div`
 
 const ContactComponent = (props) => {
   const colorMoodMapper={
-    happy:"#ffd7b5 ",
-    sad: "#fcf3d4",
+    happy:"rgb(246 187 122 / 80%)",
+    sad: "rgb(252 236 107 / 56%)",
     angry:"#c5e1a5",
     sleepy:"#CAE9F5"
   }
@@ -144,19 +144,19 @@ function ContactListComponent(props) {
   const { userInfo, refreshContactList } = props;
 
   const colorMoodHeaderMapper={
-    happy:"#ff9248",
-    sad: "#fae6a5",
-    angry:"#AED581",
-    sleepy:"#AFDCEB"
+    happy:"rgb(255 134 52)",
+    sad: "rgb(252 233 66)",
+    angry:"#267D39",
+    sleepy:"#3d5a80"
   }
  
   const [searchString, setSearchString] = useState("");
   const [searchResult, setSearchResult] = useState("");
   const [contactList, setContactList] = useState([]);
-  const [currentMood,setCurrentMood] = useState("happy");
+  const [currentMood,setCurrentMood] = useState("");
 
   const handleCurrentMood=(mood)=>{
-    updateUserMood()
+    updateUserMood(mood)
     setCurrentMood(mood)
     props.handleCurrentmood(mood)
   }
@@ -168,9 +168,9 @@ function ContactListComponent(props) {
     setSearchResult();
   };
 
-  const updateUserMood = async () => {
+  const updateUserMood = async (mood) => {
     let modfiedUser= userInfo
-    modfiedUser.mood="happy"
+    modfiedUser.mood=mood
     const updateUserMoodData = await httpManager.changeUserMood(modfiedUser);
   };
 
@@ -191,7 +191,7 @@ function ContactListComponent(props) {
       <ProfileInfoDiv style={{background: `${colorMoodHeaderMapper[currentMood]}`}}>
   <div>
         <ProfileImage
-          src={userInfo.imageUrl || "/whatsapp-clone/profile/theindiandev.jpeg"}
+          src={userInfo.imageUrl || "/resources/profile/elon.jpeg"}
         />
         </div>
         <div>
@@ -203,7 +203,7 @@ function ContactListComponent(props) {
       </ProfileInfoDiv>
       <SearchBox>
         <SearchContainer>
-          <SearchIcon src={"/whatsapp-clone/search-icon.svg"} />
+          <SearchIcon src={"/resources/search-icon.svg"} />
           <SearchInput
             placeholder="Search or start new chat"
             value={searchString}
