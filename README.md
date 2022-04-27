@@ -16,8 +16,7 @@ Team Members
 ![Domain Diagram](https://user-images.githubusercontent.com/98078922/160919688-58ccfc3b-c196-4c09-b205-8836e338bf37.jpeg)
 User Stories
 1. As a first time user I want to sign up for express so that I can use the messaging features
-2. As a user I want to use my existing mobile number to create an account so that I will be visible to my friends
-3. As a user I want to setup my express mood profile so that my contacts will know my current mood
-4. As a user I want to be available only to select people while I am in a particular mood so that not everyone can contact me
-5. As a user I want different mood profiles so that I can express my current mood like happy, sad, moody etc.
+2. As a user I want to use my existing google account to create an account so that I will be visible to my friends
+3. As a user I will be able to setup my express theme based on my mood.
+4. As a user I want different mood profiles so that I can express my current mood like happy, sad, moody etc.
 
