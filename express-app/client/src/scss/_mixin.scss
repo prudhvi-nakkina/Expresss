@@ -1,0 +1,14 @@
+@mixin font-family($family) {
+    font-family: $family;
+}
+@mixin webkit ($webkit1, $webkit2){
+    -webkit-font-smoothing: $webkit1;
+    -moz-osx-font-smoothing: $webkit1;
+}
+@mixin basic($b1, $b2) {
+    margin: $b1;
+    height: $b2;
+}
+@mixin font-family1($fam) {
+    font-family: $fam;
+}
