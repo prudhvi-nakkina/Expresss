@@ -102,7 +102,7 @@ const LoginComponent = () => {
                 onFailure={responseGoogle}
               />
             </Instructions>
-            <QRCode src="resources/qr-placeholder.png" />
+            <QRCode src="resources/logo.jpg" />
           </CardView>
         </Container>
       )}
