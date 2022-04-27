@@ -2,16 +2,17 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import httpManager from "../managers/httpManager";
 import utility from "../utility";
-import Emoji from './Emoji';
+import Emoji from "./Emoji";
+import "./../dist/main.css";
 
-const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  flex: 1.6;
-  height: 100%;
-  width: 100%;
-  border-right: 1px solid #dadada;
-`;
+// const Container = styled.div`
+//   display: flex;
+//   flex-direction: column;
+//   flex: 1.6;
+//   height: 100%;
+//   width: 100%;
+//   border-right: 1px solid #dadada;
+// `;
 
 const ProfileInfoDiv = styled.div`
   display: flex;
@@ -90,7 +91,7 @@ const ProfileImage = styled.img`
   width: 32px;
   height: 32px;
   border-radius: 50%;
-  position: "relative"
+  position: "relative";
 `;
 const ProfileIcon = styled(ProfileImage)`
   width: 38px;
@@ -107,13 +108,13 @@ const SearchResults = styled.div`
 `;
 
 const ContactComponent = (props) => {
-  const colorMoodMapper={
-    happy:"rgb(246 187 122 / 80%)",
+  const colorMoodMapper = {
+    happy: "rgb(246 187 122 / 80%)",
     sad: "rgb(252 236 107 / 56%)",
-    angry:"#c5e1a5",
-    sleepy:"#CAE9F5"
-  }
-  const { userData, setChat, userInfo,mood } = props;
+    angry: "#c5e1a5",
+    sleepy: "#CAE9F5",
+  };
+  const { userData, setChat, userInfo, mood } = props;
   const [searchResult, setSearchResult] = useState();
 
   const otherUser =
@@ -126,7 +127,10 @@ const ContactComponent = (props) => {
       ? userData.messages[userData.messages.length - 1]
       : {};
   return (
-    <ContactItem style={{background: `${colorMoodMapper[mood]}`}} onClick={() => setChat({ channelData: userData, otherUser })}>
+    <ContactItem
+      style={{ background: `${colorMoodMapper[mood]}` }}
+      onClick={() => setChat({ channelData: userData, otherUser })}
+    >
       <ProfileIcon src={otherUser?.profilePic} />
       <ContactInfo>
         <ContactName>{otherUser?.name}</ContactName>
@@ -143,23 +147,23 @@ const ContactComponent = (props) => {
 function ContactListComponent(props) {
   const { userInfo, refreshContactList } = props;
 
-  const colorMoodHeaderMapper={
-    happy:"rgb(255 134 52)",
+  const colorMoodHeaderMapper = {
+    happy: "rgb(255 134 52)",
     sad: "rgb(252 233 66)",
-    angry:"#267D39",
-    sleepy:"#3d5a80"
-  }
- 
+    angry: "#267D39",
+    sleepy: "#3d5a80",
+  };
+
   const [searchString, setSearchString] = useState("");
   const [searchResult, setSearchResult] = useState("");
   const [contactList, setContactList] = useState([]);
-  const [currentMood,setCurrentMood] = useState("");
+  const [currentMood, setCurrentMood] = useState("");
 
-  const handleCurrentMood=(mood)=>{
-    updateUserMood(mood)
-    setCurrentMood(mood)
-    props.handleCurrentmood(mood)
-  }
+  const handleCurrentMood = (mood) => {
+    updateUserMood(mood);
+    setCurrentMood(mood);
+    props.handleCurrentmood(mood);
+  };
 
   const refreshContacts = async () => {
     const contactListData = await httpManager.getChannelList(userInfo.email);
@@ -169,8 +173,8 @@ function ContactListComponent(props) {
   };
 
   const updateUserMood = async (mood) => {
-    let modfiedUser= userInfo
-    modfiedUser.mood=mood
+    let modfiedUser = userInfo;
+    modfiedUser.mood = mood;
     const updateUserMoodData = await httpManager.changeUserMood(modfiedUser);
   };
 
@@ -195,18 +199,36 @@ function ContactListComponent(props) {
   }, []);
 
   return (
-    <Container>
-      <ProfileInfoDiv style={{background: `${colorMoodHeaderMapper[currentMood]}`}}>
-  <div>
-        <ProfileImage
-          src={userInfo.imageUrl || "/resources/profile/elon.jpeg"}
-        />
+    <div className="container">
+      <ProfileInfoDiv
+        style={{ background: `${colorMoodHeaderMapper[currentMood]}` }}
+      >
+        <div>
+          <ProfileImage
+            src={userInfo.imageUrl || "/resources/profile/elon.jpeg"}
+          />
         </div>
         <div>
-          <Emoji type="happy" isSelected={currentMood === "happy"} handleOnClick={handleCurrentMood} />
-          <Emoji type="sad" isSelected={currentMood === "sad"} handleOnClick={handleCurrentMood} />
-          <Emoji type="angry" isSelected={currentMood === "angry"} handleOnClick={handleCurrentMood} />
-          <Emoji type="sleepy" isSelected={currentMood === "sleepy"} handleOnClick={handleCurrentMood} />
+          <Emoji
+            type="happy"
+            isSelected={currentMood === "happy"}
+            handleOnClick={handleCurrentMood}
+          />
+          <Emoji
+            type="sad"
+            isSelected={currentMood === "sad"}
+            handleOnClick={handleCurrentMood}
+          />
+          <Emoji
+            type="angry"
+            isSelected={currentMood === "angry"}
+            handleOnClick={handleCurrentMood}
+          />
+          <Emoji
+            type="sleepy"
+            isSelected={currentMood === "sleepy"}
+            handleOnClick={handleCurrentMood}
+          />
         </div>
       </ProfileInfoDiv>
       <SearchBox>
@@ -232,7 +254,7 @@ function ContactListComponent(props) {
           mood={currentMood}
         />
       ))}
-    </Container>
+    </div>
   );
 }
 
