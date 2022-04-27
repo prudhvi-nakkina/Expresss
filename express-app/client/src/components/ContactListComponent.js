@@ -252,6 +252,7 @@ function ContactListComponent(props) {
           <ContactComponent userData={searchResult} setChat={props.setChat} />
         </div>
       )}
+      <div className="lists">
       {contactList.map((userData) => (
         <ContactComponent
           userData={userData}
@@ -260,6 +261,7 @@ function ContactListComponent(props) {
           mood={currentMood}
         />
       ))}
+      </div>
       <div className="svgstyled">
        <NewsWidgetComponent/>
        </div>

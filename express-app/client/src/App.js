@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import ContactListComponent from "./components/ContactListComponent";
 import ConversationComponent from "./components/ConversationComponent";
-import NewsWidgetComponent from "./components/extras/NewsWidgetComponent";
 
 const Container = styled.div`
   display: flex;
@@ -67,7 +66,6 @@ function App(props) {
           <ChatPlaceholder src="/resources/logo.jpg" />
           <span>Search for your friends using email</span>
           Expresso loads your data from a Remote mongoDB
-         <NewsWidgetComponent/>
         </Placeholder>
       )}
     </Container>
