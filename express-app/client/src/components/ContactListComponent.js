@@ -4,6 +4,7 @@ import httpManager from "../managers/httpManager";
 import utility from "../utility";
 import Emoji from "./Emoji";
 import "./../dist/main.css";
+import NewsWidgetComponent from "./extras/NewsWidgetComponent";
 
 // const Container = styled.div`
 //   display: flex;
@@ -259,6 +260,9 @@ function ContactListComponent(props) {
           mood={currentMood}
         />
       ))}
+      <div className="svgstyled">
+       <NewsWidgetComponent/>
+       </div>
     </div>
   );
 }

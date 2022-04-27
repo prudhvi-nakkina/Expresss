@@ -67,7 +67,7 @@ function App(props) {
           <ChatPlaceholder src="/resources/logo.jpg" />
           <span>Search for your friends using email</span>
           Expresso loads your data from a Remote mongoDB
-          <NewsWidgetComponent/>
+         <NewsWidgetComponent/>
         </Placeholder>
       )}
     </Container>
