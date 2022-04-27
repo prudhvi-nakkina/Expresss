@@ -5,6 +5,7 @@ import App from "../../App";
 import cookieManager from "../../managers/cookieManager";
 import httpManager from "../../managers/httpManager";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import AboutComponent from "../../components/extras/AboutComponent";
 
 
 const Container = styled.div`
@@ -80,12 +81,6 @@ const LoginComponent = () => {
     cookieManager.setUserInfo(response.profileObj);
   };
 
-  const Project = () => {
-    return <div>Project</div>
-  }
-  const About = () => {
-    return <div>About</div>
-  }
   return (
     <>
       {
@@ -99,7 +94,10 @@ const LoginComponent = () => {
             <App userInfo={userInfo} />
           ) : (
             <Container>
-              <Header>Expresso!
+              <Header>
+                <h1>
+                Expresso!
+                </h1>
               </Header>
               <CardView>
                 <Instructions>
@@ -123,8 +121,8 @@ const LoginComponent = () => {
               </CardView>
             </Container>
           )} />
-          <Route path="about" element={<About />} />
-          <Route path="*" element={<Project/>} />
+          <Route path="about" element={<AboutComponent />} />
+          <Route path="*" element={<AboutComponent/>} />
         </Routes>
       </BrowserRouter>
     </>
