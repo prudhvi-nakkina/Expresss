@@ -110,7 +110,7 @@ const LoginComponent = () => {
                     </li>
                   </ol>
                   <GoogleLogin
-                    clientId="412954107899-68euuaorrd8rvs138sa74g0fhudesc2f.apps.googleusercontent.com"
+                    clientId="135907261663-hdilpg79i6h9qg1c0cjg49nv6g7fqdnk.apps.googleusercontent.com"
                     buttonText="Sign In with Google"
                     cookiePolicy={"single_host_origin"}
                     onSuccess={responseGoogle}

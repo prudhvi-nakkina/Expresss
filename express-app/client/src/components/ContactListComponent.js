@@ -6,6 +6,8 @@ import Emoji from "./Emoji";
 import "./../dist/main.css";
 import NewsWidgetComponent from "./extras/NewsWidgetComponent";
 import LogoutComponent from "./LogoutComponent";
+import { GoogleLogout } from 'react-google-login';
+import cookieManager from "../managers/cookieManager";
 
 const ProfileImage = styled.img`
   width: 32px;
@@ -52,7 +54,6 @@ const ContactComponent = (props) => {
     >
       <ProfileIcon src={otherUser?.profilePic} />
 
-      {/* ProfileIcon profileimg */}
       <div className="ContactInfo">
         <span className="ContactName">{otherUser?.name}</span>
         <span className="MessageText">{lastMessage?.text}</span>
@@ -123,6 +124,21 @@ function ContactListComponent(props) {
     return () => clearInterval(interval);
   }, []);
 
+  const logout = response => {
+    window.sessionStorage.removeItem("access_token");
+    window.sessionStorage.removeItem("nama");
+    // setState(state => ({
+    //   isLogined: false,
+    //   token: ''
+    // }),
+    //   console.log(response)
+    // );
+    cookieManager.clearUserInfo({
+      isLogined: false,
+      token: ''
+    })
+  }
+
   return (
     <div className="container">
       <div
@@ -187,8 +203,14 @@ function ContactListComponent(props) {
       <div className="svgstyled">
         <NewsWidgetComponent />
       </div>
-      <div>
-        <LogoutComponent/>
+      <div className="logout-button">
+
+        <GoogleLogout
+          clientId="135907261663-hdilpg79i6h9qg1c0cjg49nv6g7fqdnk.apps.googleusercontent.com"
+          buttonText="Logout"
+          onLogoutSuccess={logout}
+        >
+        </GoogleLogout>
       </div>
     </div>
   );
