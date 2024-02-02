@@ -1,16 +1,7 @@
-# final-project-fantastic4
-final-project-fantastic4 created by GitHub Classroom
-
-
-Team Members
-
-## 1)NUID:002923445 Name:Sai Charan Maila Email:maila.s@northeastern.edu
-
-## 2)NUID:002926129 Name:Satya Sowri Sampath Korturti Email:korturti.s@northeastern.edu
-
-## 3)NUID:002920091 Name:Akhil Sai Koppanatham Email:koppanatham.a@northeastern.edu
-
-## 4)NUID:002928761 Name:Prudhvi Hari Sai Charan Nakkina Email:nakkina.p@northeastern.edu
+EXPRESS! – 2022 (ReactJS, Node.js, Express.js, MongoDB)   
+• Crafted a real time messaging application using React JS and MongoDB that allows users to communicate with each other and
+express their current mood through UI by selecting various mood profiles.   
+• Implemented user signup and login through Google OAuth2 API, and email-based contacts discovery
 
 ### Domain Diagram
 ![Domain Diagram](https://user-images.githubusercontent.com/98078922/160919688-58ccfc3b-c196-4c09-b205-8836e338bf37.jpeg)
