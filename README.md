@@ -11,3 +11,11 @@ User Stories
 3. As a user I will be able to setup my express theme based on my mood.
 4. As a user I want different mood profiles so that I can express my current mood like happy, sad, moody etc.
 
+### Screenshots
+
+![image](https://github.com/prudhvi-nakkina/Expresss/assets/98019163/b73bf342-7b81-4f78-819c-b33d5f2cd74f)
+![image](https://github.com/prudhvi-nakkina/Expresss/assets/98019163/9e931232-9b4f-411e-9291-f1f4616b1759)
+![image](https://github.com/prudhvi-nakkina/Expresss/assets/98019163/9f4602be-286f-488c-9d04-d13cf89d4f2a)
+![image](https://github.com/prudhvi-nakkina/Expresss/assets/98019163/bc04ad97-4427-4d7c-8319-32e9dc269690)
+
+
